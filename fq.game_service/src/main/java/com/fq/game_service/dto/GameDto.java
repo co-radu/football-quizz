@@ -1,7 +1,7 @@
 package com.fq.game_service.dto;
 
-import com.fq.game_service.models.GameType;
 
+import com.fq.game_service.dao.GameType;
 
 public class GameDto {
 

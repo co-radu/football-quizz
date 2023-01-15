@@ -1,24 +1,18 @@
-package com.fq.game_service.models;
+package com.fq.game_service.dto;
 
 import com.fq.game_service.dao.Game;
-import jakarta.persistence.*;
 
 import java.util.List;
 
-@Entity
-public class GameType {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class GameTypeDto {
+
     private int id;
-    @Column(nullable = false)
+
     private int timer;
-    @Column(nullable = false, length = 30)
+
     private String label;
 
-    @OneToMany()
     private List<Game> games;
-
-    public GameType() {
-    }
 
     public int getId() {
         return id;

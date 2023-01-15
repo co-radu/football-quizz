@@ -1,6 +1,5 @@
 package com.fq.game_service.dao;
 
-import com.fq.game_service.models.GameType;
 import jakarta.persistence.*;
 
 @Entity

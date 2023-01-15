@@ -2,7 +2,7 @@ package com.fq.game_service.controllers;
 
 import com.fq.game_service.dao.Game;
 import com.fq.game_service.dto.GameDto;
-import com.fq.game_service.repositories.GameRepository;
+import com.fq.game_service.repositories.GameRepo;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +13,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/games")
 public class GameController {
-    @Autowired private GameRepository gameRepo;
+    @Autowired private GameRepo gameRepo;
 
     @Autowired private ModelMapper modelMapper;
 

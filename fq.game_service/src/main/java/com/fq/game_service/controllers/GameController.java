@@ -2,11 +2,11 @@ package com.fq.game_service.controllers;
 
 import com.fq.game_service.dao.Game;
 import com.fq.game_service.dto.GameDto;
+import com.fq.game_service.exceptions.NotFoundException;
 import com.fq.game_service.repositories.GameRepo;
 import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,26 +36,41 @@ public class GameController {
     }
 
     @GetMapping("{id}")
-    public GameDto getGame(@PathVariable() Integer id) {
-        Optional<Game> game = gameRepo.findById(id);
-        return modelMapper.map(game, GameDto.class);
+    public ResponseEntity<?> getGame(@PathVariable() Integer id) {
+        if (gameRepo.findById(id).isPresent()) {
+            Optional<Game> game = gameRepo.findById(id);
+            return ResponseEntity
+                    .ok(modelMapper.map(game, GameDto.class));
+
+        }
+        return ResponseEntity
+                .badRequest()
+                .body(NotFoundException.NotFoundMessage(id, "Game"));
     }
 
     @PutMapping("{id}")
-    public GameDto update(@PathVariable @Valid Integer id, @RequestBody GameDto game) {
-        Optional<Game> gameToUpdate = gameRepo.findById(id);
-        if (gameToUpdate.isPresent()) {
+    public ResponseEntity<?> update(@PathVariable @Valid Integer id, @RequestBody GameDto game) {
+        if (gameRepo.findById(id).isPresent()) {
+            Optional<Game> gameToUpdate = gameRepo.findById(id);
             Game savedUpdatedGame = gameRepo.save(modelMapper.map(game, Game.class));
-            return modelMapper.map(savedUpdatedGame, GameDto.class);
-        } else {
-            new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-            return game;
+            return ResponseEntity
+                    .ok(modelMapper.map(savedUpdatedGame, GameDto.class));
         }
+        return ResponseEntity
+                .badRequest()
+                .body(NotFoundException.NotFoundMessage(id, "Game"));
     }
 
     @DeleteMapping("{id}")
-    public String delete(@PathVariable() Integer id) {
-        gameRepo.deleteById(id);
-        return "Le jeu n°" + id +" à bien été supprimé !";
+    public ResponseEntity<?> delete(@PathVariable() Integer id) {
+        if (gameRepo.findById(id).isPresent()) {
+            gameRepo.deleteById(id);
+            return ResponseEntity
+                    .ok(String.format("Game id: %s has been removed.", id));
+        }
+        return ResponseEntity
+                .badRequest()
+                .body(NotFoundException.NotFoundMessage(id, "Game"));
+
     }
 }

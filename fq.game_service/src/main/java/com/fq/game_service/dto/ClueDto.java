@@ -5,11 +5,9 @@ import jakarta.validation.constraints.NotNull;
 
 import java.util.List;
 
-public class GameTypeDto {
+public class ClueDto {
 
     private int id;
-
-    private int timer;
 
     @NotNull
     private String label;
@@ -26,14 +24,6 @@ public class GameTypeDto {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getTimer() {
-        return timer;
-    }
-
-    public void setTimer(int timer) {
-        this.timer = timer;
     }
 
     public String getLabel() {

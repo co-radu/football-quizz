@@ -2,6 +2,8 @@ package com.fq.game_service.dao;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+
 @Entity
 public class Game {
 
@@ -16,11 +18,18 @@ public class Game {
     )
     private GameType gameType;
 
-    @Column(nullable = false)
-    private String response;
+    @ElementCollection
+    @CollectionTable(name="clueList")
+    private ArrayList<Clue> clues = new ArrayList<Clue>();
 
-    @Column(nullable = false)
-    private String pictureUrl;
+    @ManyToOne
+    private Jersey jersey;
+
+    @ManyToOne
+    private Player player;
+
+    @ManyToOne
+    private Composition composition;
 
 /*
     Getters and Setters
@@ -42,19 +51,35 @@ public class Game {
         this.gameType = gameType;
     }
 
-    public String getResponse() {
-        return response;
+    public ArrayList<Clue> getClues() {
+        return clues;
     }
 
-    public void setResponse(String response) {
-        this.response = response;
+    public void setClues(ArrayList<Clue> clues) {
+        this.clues = clues;
     }
 
-    public String getPictureUrl() {
-        return pictureUrl;
+    public Jersey getJersey() {
+        return jersey;
     }
 
-    public void setPictureUrl(String pictureUrl) {
-        this.pictureUrl = pictureUrl;
+    public void setJersey(Jersey jersey) {
+        this.jersey = jersey;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    public Composition getComposition() {
+        return composition;
+    }
+
+    public void setComposition(Composition composition) {
+        this.composition = composition;
     }
 }

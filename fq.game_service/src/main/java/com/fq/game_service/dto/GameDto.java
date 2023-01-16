@@ -1,20 +1,23 @@
 package com.fq.game_service.dto;
 
 
-import com.fq.game_service.dao.GameType;
-import jakarta.validation.constraints.NotNull;
+import com.fq.game_service.dao.*;
+
+import java.util.List;
 
 public class GameDto {
 
     private int id;
 
-    @NotNull
     private GameType gameType;
 
-    @NotNull
-    private String response;
+    private List<Clue> clues;
 
-    private String pictureUrl;
+    private Jersey jersey;
+
+    private Player player;
+
+    private Composition composition;
 
 /*
     Getters and Setters
@@ -36,19 +39,35 @@ public class GameDto {
         this.gameType = gameType;
     }
 
-    public String getResponse() {
-        return response;
+    public List<Clue> getClues() {
+        return clues;
     }
 
-    public void setResponse(String response) {
-        this.response = response;
+    public void setClues(List<Clue> clues) {
+        this.clues = clues;
     }
 
-    public String getPictureUrl() {
-        return pictureUrl;
+    public Jersey getJersey() {
+        return jersey;
     }
 
-    public void setPictureUrl(String pictureUrl) {
-        this.pictureUrl = pictureUrl;
+    public void setJersey(Jersey jersey) {
+        this.jersey = jersey;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    public Composition getComposition() {
+        return composition;
+    }
+
+    public void setComposition(Composition composition) {
+        this.composition = composition;
     }
 }

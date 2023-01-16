@@ -1,20 +1,20 @@
-package com.fq.game_service.dto;
+package com.fq.game_service.dao;
 
-import com.fq.game_service.dao.Game;
-import jakarta.validation.constraints.NotNull;
+import jakarta.persistence.*;
 
 import java.util.List;
 
-public class GameTypeDto {
+@Entity
+public class Clue {
 
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private int timer;
-
-    @NotNull
+    @Column(nullable = false)
     private String label;
 
-    private List<Game> games;
+    @ManyToMany
+    List<Game> games;
 
 /*
     Getters and Setters
@@ -26,14 +26,6 @@ public class GameTypeDto {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getTimer() {
-        return timer;
-    }
-
-    public void setTimer(int timer) {
-        this.timer = timer;
     }
 
     public String getLabel() {

@@ -2,6 +2,7 @@ package com.fq.game_service.controllers;
 
 import com.fq.game_service.dao.GameType;
 import com.fq.game_service.dto.GameTypeDto;
+import com.fq.game_service.exceptions.NotFoundException;
 import com.fq.game_service.repositories.GameTypeRepo;
 import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
@@ -43,7 +44,7 @@ public class GameTypeController {
         }
         return ResponseEntity
                 .badRequest()
-                .body(String.format("Failed for : Game type id: %s not found.", id));
+                .body(NotFoundException.NotFoundMessage(id, "Game type"));
     }
 
     @PutMapping("{id}")
@@ -56,19 +57,19 @@ public class GameTypeController {
         }
         return ResponseEntity
                 .badRequest()
-                .body(String.format("Failed for : Game type id: %s not found.", id));
+                .body(NotFoundException.NotFoundMessage(id, "Game type"));
     }
 
     @DeleteMapping("{id}")
     public ResponseEntity<?> delete(@PathVariable() Integer id) {
-        if(gameTypeRepo.findById(id).isEmpty()) {
+        if (gameTypeRepo.findById(id).isPresent()) {
+            gameTypeRepo.deleteById(id);
             return ResponseEntity
-                    .badRequest()
-                    .body(String.format("Failed for : Game type id: %s not found.", id));
-
+                    .ok(String.format("Game type id: %s has been removed.", id));
         }
-        gameTypeRepo.deleteById(id);
         return ResponseEntity
-                .ok(String.format("Game type id: %s has been removed.", id));
+                .badRequest()
+                .body(NotFoundException.NotFoundMessage(id, "Game type"));
+
     }
 }

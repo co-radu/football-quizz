@@ -2,13 +2,16 @@ package com.fq.game_service.dto;
 
 
 import com.fq.game_service.dao.GameType;
+import jakarta.validation.constraints.NotNull;
 
 public class GameDto {
 
     private int id;
 
+    @NotNull
     private GameType gameType;
 
+    @NotNull
     private String response;
 
     private String pictureUrl;

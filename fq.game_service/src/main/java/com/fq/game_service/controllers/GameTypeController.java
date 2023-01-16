@@ -3,8 +3,10 @@ package com.fq.game_service.controllers;
 import com.fq.game_service.dao.GameType;
 import com.fq.game_service.dto.GameTypeDto;
 import com.fq.game_service.repositories.GameTypeRepo;
+import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,7 +21,7 @@ public class GameTypeController {
     @Autowired private ModelMapper modelMapper;
 
     @PostMapping()
-    public GameTypeDto create(@RequestBody GameTypeDto game) {
+    public GameTypeDto create(@RequestBody @Valid GameTypeDto game) {
         GameType savedGameType = gameTypeRepo.save(modelMapper.map(game, GameType.class));
         return modelMapper.map(savedGameType, GameTypeDto.class);
     }
@@ -33,20 +35,40 @@ public class GameTypeController {
     }
 
     @GetMapping("{id}")
-    public GameTypeDto getGame(@PathVariable() Integer id) {
-        Optional<GameType> game = gameTypeRepo.findById(id);
-        return modelMapper.map(game, GameTypeDto.class);
+    public ResponseEntity<?> getGame(@PathVariable() Integer id) {
+        if (gameTypeRepo.findById(id).isPresent()) {
+            Optional<GameType> gameType = gameTypeRepo.findById(id);
+            return ResponseEntity
+                    .ok(modelMapper.map(gameType, GameTypeDto.class));
+        }
+        return ResponseEntity
+                .badRequest()
+                .body(String.format("Failed for : Game type id: %s not found.", id));
     }
 
     @PutMapping("{id}")
-    public GameTypeDto update(@PathVariable Integer id, @RequestBody GameTypeDto game) {
-        Optional<GameType> gameToUpdate = gameTypeRepo.findById(id);
-        GameType savedUpdatedGameType = gameTypeRepo.save(modelMapper.map(game, GameType.class));
-        return modelMapper.map(savedUpdatedGameType, GameTypeDto.class);
+    public ResponseEntity<?> update(@PathVariable @Valid Integer id, @RequestBody GameTypeDto gameType) {
+        if (gameTypeRepo.findById(id).isPresent()) {
+            gameType.setId(id);
+            GameType gameTypeToUpdate = modelMapper.map(gameType, GameType.class);
+            gameTypeRepo.save(gameTypeToUpdate);
+            return ResponseEntity.ok(gameTypeToUpdate);
+        }
+        return ResponseEntity
+                .badRequest()
+                .body(String.format("Failed for : Game type id: %s not found.", id));
     }
+
     @DeleteMapping("{id}")
-    public String delete(@PathVariable() Integer id) {
+    public ResponseEntity<?> delete(@PathVariable() Integer id) {
+        if(gameTypeRepo.findById(id).isEmpty()) {
+            return ResponseEntity
+                    .badRequest()
+                    .body(String.format("Failed for : Game type id: %s not found.", id));
+
+        }
         gameTypeRepo.deleteById(id);
-        return "Le type de jeu n°" + id +" à bien été supprimé !";
+        return ResponseEntity
+                .ok(String.format("Game type id: %s has been removed.", id));
     }
 }

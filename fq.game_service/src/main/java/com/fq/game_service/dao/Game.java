@@ -11,7 +11,6 @@ public class Game {
 
     @ManyToOne(
             cascade = {
-                    CascadeType.PERSIST,
                     CascadeType.MERGE
             }
     )

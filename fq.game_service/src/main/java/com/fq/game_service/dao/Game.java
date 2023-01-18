@@ -2,7 +2,7 @@ package com.fq.game_service.dao;
 
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Game {
@@ -11,24 +11,20 @@ public class Game {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ManyToOne(
-            cascade = {
-                    CascadeType.MERGE
-            }
-    )
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(nullable = false)
     private GameType gameType;
 
-    @ElementCollection
-    @CollectionTable(name="clueList")
-    private ArrayList<Clue> clues = new ArrayList<Clue>();
+    @Column(nullable = false)
+    private List<String> clueList;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     private Jersey jersey;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     private Player player;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     private Composition composition;
 
 /*
@@ -51,12 +47,12 @@ public class Game {
         this.gameType = gameType;
     }
 
-    public ArrayList<Clue> getClues() {
-        return clues;
+    public List<String> getClues() {
+        return clueList;
     }
 
-    public void setClues(ArrayList<Clue> clues) {
-        this.clues = clues;
+    public void setClues(List<String> clues) {
+        this.clueList = clues;
     }
 
     public Jersey getJersey() {

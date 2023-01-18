@@ -2,6 +2,7 @@ package com.fq.game_service.dao;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -10,14 +11,28 @@ public class Composition {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(nullable = false)
+    @Column(
+            nullable = false,
+            length = 30
+    )
     private String label;
+
+    @Column(nullable = false)
+    private List<String> teamList;
 
     @Column(nullable = false)
     private String pictureUrl;
 
-    @ManyToMany
-    private List<Game> games;
+    @ManyToMany(cascade = {
+            CascadeType.MERGE,
+    })
+    @JoinColumn(nullable = false)
+    @JoinTable(
+            name = "composition_player",
+            joinColumns = @JoinColumn(name = "composition_id"),
+            inverseJoinColumns = @JoinColumn(name = "player_id")
+    )
+    private List<Player> playerList = new ArrayList<>();
 
 /*
     Getters and Setters
@@ -39,6 +54,14 @@ public class Composition {
         this.label = label;
     }
 
+    public List<String> getTeamList() {
+        return teamList;
+    }
+
+    public void setTeamList(List<String> teamList) {
+        this.teamList = teamList;
+    }
+
     public String getPictureUrl() {
         return pictureUrl;
     }
@@ -47,11 +70,11 @@ public class Composition {
         this.pictureUrl = pictureUrl;
     }
 
-    public List<Game> getGames() {
-        return games;
+    public List<Player> getPlayerList() {
+        return playerList;
     }
 
-    public void setGames(List<Game> games) {
-        this.games = games;
+    public void setPlayerList(List<Player> playerList) {
+        this.playerList = playerList;
     }
 }

@@ -11,7 +11,7 @@ public class GameDto {
 
     private GameType gameType;
 
-    private List<Clue> clues;
+    private List<String> clueList;
 
     private Jersey jersey;
 
@@ -39,12 +39,12 @@ public class GameDto {
         this.gameType = gameType;
     }
 
-    public List<Clue> getClues() {
-        return clues;
+    public List<String> getClues() {
+        return clueList;
     }
 
-    public void setClues(List<Clue> clues) {
-        this.clues = clues;
+    public void setClues(List<String> clues) {
+        this.clueList = clues;
     }
 
     public Jersey getJersey() {

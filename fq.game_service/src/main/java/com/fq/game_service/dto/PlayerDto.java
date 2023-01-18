@@ -1,9 +1,8 @@
 package com.fq.game_service.dto;
 
-import com.fq.game_service.dao.Game;
 import jakarta.validation.constraints.NotNull;
 
-
+import java.util.LinkedList;
 import java.util.List;
 
 public class PlayerDto {
@@ -15,12 +14,9 @@ public class PlayerDto {
     @NotNull
     private String lastName;
 
-    private List<String> acceptableAnswers;
+    private List<String> acceptableAnswers = new LinkedList<String>();
 
-    @NotNull
     private String pictureUrl;
-
-    private List<Game> games;
 
 /*
     Getters and Setters
@@ -64,13 +60,5 @@ public class PlayerDto {
 
     public void setPictureUrl(String pictureUrl) {
         this.pictureUrl = pictureUrl;
-    }
-
-    public List<Game> getGames() {
-        return games;
-    }
-
-    public void setGames(List<Game> games) {
-        this.games = games;
     }
 }

@@ -21,6 +21,8 @@ public class GameTypeController {
 
     @Autowired private ModelMapper modelMapper;
 
+    private final String exceptionType = "Game type";
+
     @PostMapping()
     public GameTypeDto create(@RequestBody @Valid GameTypeDto game) {
         GameType savedGameType = gameTypeRepo.save(modelMapper.map(game, GameType.class));
@@ -44,7 +46,7 @@ public class GameTypeController {
         }
         return ResponseEntity
                 .badRequest()
-                .body(NotFoundException.NotFoundMessage(id, "Game type"));
+                .body(NotFoundException.NotFoundMessage(id, exceptionType));
     }
 
     @PutMapping("{id}")
@@ -57,7 +59,7 @@ public class GameTypeController {
         }
         return ResponseEntity
                 .badRequest()
-                .body(NotFoundException.NotFoundMessage(id, "Game type"));
+                .body(NotFoundException.NotFoundMessage(id, exceptionType));
     }
 
     @DeleteMapping("{id}")
@@ -65,11 +67,11 @@ public class GameTypeController {
         if (gameTypeRepo.findById(id).isPresent()) {
             gameTypeRepo.deleteById(id);
             return ResponseEntity
-                    .ok(String.format("Game type id: %s has been removed.", id));
+                    .ok(String.format("%s id: %s has been removed.",exceptionType, id));
         }
         return ResponseEntity
                 .badRequest()
-                .body(NotFoundException.NotFoundMessage(id, "Game type"));
+                .body(NotFoundException.NotFoundMessage(id, exceptionType));
 
     }
 }

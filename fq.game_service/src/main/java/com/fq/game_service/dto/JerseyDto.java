@@ -1,9 +1,6 @@
 package com.fq.game_service.dto;
 
-import com.fq.game_service.dao.Game;
 import jakarta.validation.constraints.NotNull;
-
-import java.util.List;
 
 public class JerseyDto {
 
@@ -17,9 +14,6 @@ public class JerseyDto {
 
     @NotNull
     private String pictureUrl;
-
-    private List<Game> games;
-
 /*
     Getters and Setters
 */
@@ -54,13 +48,5 @@ public class JerseyDto {
 
     public void setPictureUrl(String pictureUrl) {
         this.pictureUrl = pictureUrl;
-    }
-
-    public List<Game> getGames() {
-        return games;
-    }
-
-    public void setGames(List<Game> games) {
-        this.games = games;
     }
 }

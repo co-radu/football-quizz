@@ -7,23 +7,21 @@ import java.util.List;
 @Entity
 public class Player {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @Column(length = 30)
     private String firstName;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 30)
     private String lastName;
 
     private List<String> acceptableAnswers;
 
-    @Column(nullable = false)
     private String pictureUrl;
 
-    @ManyToMany
-    private List<Game> games;
-
-/*
+    /*
     Getters and Setters
 */
 
@@ -65,13 +63,5 @@ public class Player {
 
     public void setPictureUrl(String pictureUrl) {
         this.pictureUrl = pictureUrl;
-    }
-
-    public List<Game> getGames() {
-        return games;
-    }
-
-    public void setGames(List<Game> games) {
-        this.games = games;
     }
 }

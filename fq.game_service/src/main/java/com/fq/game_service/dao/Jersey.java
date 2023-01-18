@@ -2,15 +2,14 @@ package com.fq.game_service.dao;
 
 import jakarta.persistence.*;
 
-import java.util.List;
-
 @Entity
 public class Jersey {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 30)
     private String team;
 
     @Column(nullable = false)
@@ -18,9 +17,6 @@ public class Jersey {
 
     @Column(nullable = false)
     private String pictureUrl;
-
-    @ManyToMany
-    private List<Game> games;
 
 /*
     Getters and Setters
@@ -56,13 +52,5 @@ public class Jersey {
 
     public void setPictureUrl(String pictureUrl) {
         this.pictureUrl = pictureUrl;
-    }
-
-    public List<Game> getGames() {
-        return games;
-    }
-
-    public void setGames(List<Game> games) {
-        this.games = games;
     }
 }

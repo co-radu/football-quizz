@@ -1,8 +1,7 @@
 package com.fq.game_service.dto;
 
-import com.fq.game_service.dao.Game;
+import com.fq.game_service.dao.Player;
 import jakarta.validation.constraints.NotNull;
-
 
 import java.util.List;
 
@@ -14,9 +13,13 @@ public class CompositionDto {
     private String label;
 
     @NotNull
+    private List<String> teamList;
+
+    @NotNull
     private String pictureUrl;
 
-    private List<Game> games;
+    @NotNull
+    private List<Player> playerList;
 
 /*
     Getters and Setters
@@ -38,6 +41,14 @@ public class CompositionDto {
         this.label = label;
     }
 
+    public List<String> getTeamList() {
+        return teamList;
+    }
+
+    public void setTeamList(List<String> teamList) {
+        this.teamList = teamList;
+    }
+
     public String getPictureUrl() {
         return pictureUrl;
     }
@@ -46,11 +57,11 @@ public class CompositionDto {
         this.pictureUrl = pictureUrl;
     }
 
-    public List<Game> getGames() {
-        return games;
+    public List<Player> getPlayerList() {
+        return playerList;
     }
 
-    public void setGames(List<Game> games) {
-        this.games = games;
+    public void setPlayerList(List<Player> playerList) {
+        this.playerList = playerList;
     }
 }

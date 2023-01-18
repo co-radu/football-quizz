@@ -47,12 +47,12 @@ public class Game {
         this.gameType = gameType;
     }
 
-    public List<String> getClues() {
+    public List<String> getClueList() {
         return clueList;
     }
 
-    public void setClues(List<String> clues) {
-        this.clueList = clues;
+    public void setClueList(List<String> clueList) {
+        this.clueList = clueList;
     }
 
     public Jersey getJersey() {

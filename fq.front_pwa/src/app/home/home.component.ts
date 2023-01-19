@@ -18,13 +18,6 @@ export class HomeComponent implements OnInit {
     this.gameService.getGameList().subscribe(
       (gameList: Game[]) => {
         localStorage.setItem('game_list', JSON.stringify(gameList));
-        gameList.forEach(
-          (game: Game) => {
-            const gameTypeLabel: string = game.gameType.label.toLowerCase();
-            localStorage.setItem(gameTypeLabel, JSON.stringify(game));
-            console.log(JSON.parse(localStorage.getItem(gameTypeLabel) || ''));
-          }
-        );
       }
     )
   }

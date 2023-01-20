@@ -1,0 +1,22 @@
+<div *ngIf="roundCounter < maxRoundInGame">
+    <p>
+        BRAVO ! <br>
+        Question {{roundCounter}} / {{maxRoundInGame}} <br>
+        Ton score : {{successCounter}} <br>
+    </p>
+    <button mat-raised-button color="warn" (click)="redirectToHome()">
+        Abandon
+    </button>
+    <button mat-raised-button color="primary" (click)="nextQuestion()">
+        Suivant
+    </button>
+</div>
+<div *ngIf="roundCounter === maxRoundInGame">
+    <p>
+        Partie terminée <br>
+        Ton score : {{successCounter}}
+    </p>
+    <button mat-raised-button color="primary" (click)="redirectToHome()">
+        Menu Principal
+    </button>
+</div>

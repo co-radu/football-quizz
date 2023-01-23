@@ -16,7 +16,6 @@ import { HomeComponent } from './home/home.component';
 import { GuessPlayerComponent } from './guess-player/guess-player.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SuccessComponent } from './bottom-sheets/success/success.component';
-import { UnsuccessComponent } from './bottom-sheets/unsuccess/unsuccess.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +23,6 @@ import { UnsuccessComponent } from './bottom-sheets/unsuccess/unsuccess.componen
     HomeComponent,
     GuessPlayerComponent,
     SuccessComponent,
-    UnsuccessComponent
   ],
   imports: [
     BrowserModule,

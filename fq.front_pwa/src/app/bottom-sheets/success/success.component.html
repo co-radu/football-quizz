@@ -1,6 +1,6 @@
-<div *ngIf="roundCounter < maxRoundInGame">
+<div *ngIf="repIsValid && roundCounter != maxRoundInGame">
     <p>
-        BRAVO ! <br>
+        Bravo ! <br>
         Question {{roundCounter}} / {{maxRoundInGame}} <br>
         Ton score : {{successCounter}} <br>
     </p>
@@ -11,10 +11,39 @@
         Suivant
     </button>
 </div>
+<div *ngIf="templateToDisplay === 'try_again'">
+    <p>
+        Faux !<br>
+        Il vous reste {{2 - testCounter}} éssai(s).
+        Le jeu va reprendre dans {{timeToRetry}} secondes.
+    </p>
+</div>
+<div *ngIf="templateToDisplay === 'unsuccess' && roundCounter != maxRoundInGame">
+    <p>
+        Temps écoulé ! <br>
+        Question {{roundCounter}} / {{maxRoundInGame}} <br>
+        Ton score : {{successCounter}}<br>
+    </p>
+    <button mat-raised-button color="warn" (click)="redirectToHome()">
+        Abandon
+    </button>
+    <button mat-raised-button color="primary" (click)="nextQuestion()">
+        Suivant
+    </button>
+</div>
 <div *ngIf="roundCounter === maxRoundInGame">
+    <p *ngIf="repIsValid">
+        Bravo !
+    </p>
+    <p *ngIf="!repIsValid && timeLeft > 0">
+        Faux !
+    </p>
+    <p *ngIf="!repIsValid && timeLeft === 0">
+        Temps écoulé !
+    </p>
     <p>
         Partie terminée <br>
-        Ton score : {{successCounter}}
+        Ton score : {{successCounter}} / {{maxRoundInGame}}
     </p>
     <button mat-raised-button color="primary" (click)="redirectToHome()">
         Menu Principal

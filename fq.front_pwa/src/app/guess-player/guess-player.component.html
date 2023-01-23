@@ -1,5 +1,5 @@
 <router-outlet></router-outlet>
-<div class="guess-player">
+<div class="guess-player" (focus)="startTimer()">
     <img src="/assets/placeholder-pictures/player.png" alt="Football player shadow"
         class="guess-player__placeholder-picture">
     <ul class="guesss-player__clueList">
@@ -7,6 +7,7 @@
             <p>{{clue}}</p>
         </div>
     </ul>
+    {{timeLeft}}
     <button *ngIf="!isFound" mat-raised-button color="primary" class="buttons" (click)="foundToggler()">
         trouvé
     </button>

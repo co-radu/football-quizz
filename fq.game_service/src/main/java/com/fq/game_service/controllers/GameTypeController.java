@@ -37,7 +37,7 @@ public class GameTypeController {
                 .toList();
     }
 
-    @GetMapping("{id}")
+    @GetMapping("{label}")
     public ResponseEntity<?> getGame(@PathVariable() Integer id) {
         if (gameTypeRepo.findById(id).isPresent()) {
             Optional<GameType> gameType = gameTypeRepo.findById(id);

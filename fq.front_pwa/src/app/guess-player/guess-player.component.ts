@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatBottomSheet, MatBottomSheetRef } from '@angular/material/bottom-sheet';
 
 import { BehaviorSubject } from 'rxjs';
 
 import { Game } from '../models/game/game';
-import { SuccessComponent } from '../bottom-sheets/success/success.component';
+import { ResultsComponent } from '../bottom-sheets/results/results.component';
 import { Router } from '@angular/router';
 
 
@@ -14,16 +14,15 @@ import { Router } from '@angular/router';
   templateUrl: './guess-player.component.html',
   styleUrls: ['./guess-player.component.scss']
 })
-export class GuessPlayerComponent implements OnInit {
+export class GuessPlayerComponent {
 
   private guessPlayerGameList: Game[];
   private currentGame: BehaviorSubject<Game>;
   private randomGame: number;
   private interval: any;
-  private bottomSheetRef = {} as MatBottomSheetRef<SuccessComponent>;
+  private bottomSheetRef = {} as MatBottomSheetRef<ResultsComponent>;
   private href: string;
 
-  public testCounter: number = 1;
   public clueList: string[];
   public isFound: boolean = false;
   public playerForm: FormControl = new FormControl('', Validators.required);
@@ -45,12 +44,6 @@ export class GuessPlayerComponent implements OnInit {
     this.timeLeft = this.guessPlayerGameList[this.randomGame].gameType.timer;
     this.startTimer();
     this.href = this.router.url;
-  }
-
-  ngOnInit(): void {
-
-    // this.timeLeft = 5;
-    // this.testCounter = 1;
   }
 
   startTimer(): void {
@@ -75,11 +68,10 @@ export class GuessPlayerComponent implements OnInit {
 
   openBottomSheet(): void {
     this.stopTimer();
-    this.bottomSheetRef = this.bottomSheet.open(SuccessComponent, {
+    this.bottomSheetRef = this.bottomSheet.open(ResultsComponent, {
       data: {
         roundCounter: this.roundCounter,
         successCounter: this.successCounter,
-        testCounter: this.testCounter,
         respIsValid: this.respIsValid,
         timeLeft: this.timeLeft
       }
@@ -108,10 +100,6 @@ export class GuessPlayerComponent implements OnInit {
       this.roundCounter++;
       this.successCounter++;
       this.respIsValid = true;
-    } else if (this.testCounter < 2) {
-      this.testCounter++;
-    } else {
-      this.roundCounter++;
     }
     this.openBottomSheet();
   }

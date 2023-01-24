@@ -1,31 +1,7 @@
-interface GameType {
-    id: number;
-    timer: number;
-    label: string;
-}
-
-interface Jersey {
-    id: number;
-    team: string;
-    season: number;
-    pictureUrl: string;
-}
-
-interface Player {
-    id: number;
-    firstName: string;
-    lastName: string;
-    acceptableAnswers: string[];
-    pictureUrl: string;
-}
-
-interface Composition {
-    id: number;
-    label: number;
-    teamList: string[];
-    pictureUrl: string;
-    playerList: Player[];
-}
+import { Composition } from "../composition/composition";
+import { GameType } from "../game-type/game-type";
+import { Jersey } from "../jersey/jersey";
+import { Player } from "../player/player";
 
 export class Game {
 

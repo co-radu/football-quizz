@@ -1,12 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Game } from 'src/app/models/game/game';
+import { GameType } from 'src/app/models/game-type/game-type';
 
 @Injectable({
   providedIn: 'root'
 })
-export class GameService {
+export class GameTypeService {
 
   private apiUrl: string = "http://localhost:8080";
 
@@ -14,7 +14,7 @@ export class GameService {
     private httpClient: HttpClient
   ) { }
 
-  getGameList(): Observable<Game[]> {
-    return this.httpClient.get<Game[]>(`${this.apiUrl}/games`)
+  getGameTypeList(): Observable<GameType[]> {
+    return this.httpClient.get<GameType[]>(`${this.apiUrl}/game_types`)
   }
 }

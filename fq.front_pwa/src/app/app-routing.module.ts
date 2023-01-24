@@ -5,7 +5,7 @@ import { GuessPlayerComponent } from './guess-player/guess-player.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
-  {path: 'guess_player', component: GuessPlayerComponent}
+  {path: 'games_display', component: GuessPlayerComponent}
 ];
 
 @NgModule({

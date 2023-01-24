@@ -15,14 +15,14 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { GuessPlayerComponent } from './guess-player/guess-player.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { SuccessComponent } from './bottom-sheets/success/success.component';
+import { ResultsComponent } from './bottom-sheets/results/results.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     GuessPlayerComponent,
-    SuccessComponent,
+    ResultsComponent,
   ],
   imports: [
     BrowserModule,

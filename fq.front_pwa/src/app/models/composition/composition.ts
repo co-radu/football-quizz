@@ -4,7 +4,7 @@ export class Composition {
 
     constructor(
         id: number,
-        label: number,
+        label: string,
         teamList: string[],
         pictureUrl: string,
         playerList: Player[]
@@ -17,7 +17,7 @@ export class Composition {
     }
 
     id: number;
-    label: number;
+    label: string;
     teamList: string[];
     pictureUrl: string;
     playerList: Player[];

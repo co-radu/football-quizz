@@ -32,9 +32,7 @@ public class GameController {
     @GetMapping()
     public List<GameDto> getGameList() {
         List<Game> gameList = gameRepo.findAll();
-        return gameList.stream().map(
-                        game -> modelMapper.map(game, GameDto.class))
-                .toList();
+        return gameList.stream().map((Game game) -> modelMapper.map(game, GameDto.class)).toList();
     }
 
     @GetMapping("{id}")

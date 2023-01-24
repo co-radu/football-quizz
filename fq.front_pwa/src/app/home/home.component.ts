@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { GameType } from '../models/game-type/game-type';
+import { Game } from '../models/game/game';
 
 @Component({
   selector: 'app-home',
@@ -17,8 +18,8 @@ export class HomeComponent {
     this.gameTypeLabels = this.gameTypeList.map((gameType: GameType) => gameType.label);
   }
 
-  redirectToAndFetchGames(index: number): void {
+  fetchGames(index: number): Game[] {
     this.router.navigate(['/games_display']);
-    console.log(this.gameTypeList[index]); // Add .games for recover game list attached to this game type.
+    return this.gameTypeList[index].games;
   }
 }

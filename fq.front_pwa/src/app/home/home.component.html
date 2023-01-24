@@ -4,7 +4,6 @@
 <nav class="button-list">
 	<button mat-raised-button color="primary" class="buttons">partie rapide</button>
 	<div class="button-list__game-type" *ngFor="let gameTypeLabel of gameTypeLabels; let i = index">
-		<button mat-raised-button color="accent" class="buttons"
-			(click)="fetchGames(i)">{{gameTypeLabel}}</button>
+		<button mat-raised-button color="accent" class="buttons" (click)="fetchGames(i)">{{gameTypeLabel}}</button>
 	</div>
 </nav>

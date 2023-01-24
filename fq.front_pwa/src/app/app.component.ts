@@ -10,7 +10,6 @@ import { GameTypeService } from './services/game-type/game-type.service';
 })
 export class AppComponent {
 
-  private gameTypeListSaved: GameType[] = JSON.parse(localStorage['game_type_list']);
 
   constructor(
     private gameTypeService: GameTypeService
@@ -18,11 +17,12 @@ export class AppComponent {
     if (navigator.onLine) {
       this.gameTypeService.getGameTypeList().subscribe(
         (gameTypeList: GameType[]) => {
-          if (JSON.stringify(this.gameTypeListSaved) != JSON.stringify(gameTypeList)) {
+          const gameTypeListSaved: string = localStorage['game_type_list'];
+          if (!gameTypeListSaved || gameTypeListSaved != JSON.stringify(gameTypeList)) {
             localStorage.setItem('game_type_list', JSON.stringify(gameTypeList));
           }
         }
-      )
+      );
     }
   }
 }

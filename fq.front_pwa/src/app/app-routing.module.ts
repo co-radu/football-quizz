@@ -1,11 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { GamesDisplayComponent } from './games-display/games-display.component';
 import { HomeComponent } from './home/home.component';
-import { GuessPlayerComponent } from './guess-player/guess-player.component';
 
 const routes: Routes = [
-  {path: '', component: HomeComponent},
-  {path: 'games_display', component: GuessPlayerComponent}
+  {
+    path: '',
+    component: HomeComponent,
+  },
+  {
+    path: 'games_display',
+    component: GamesDisplayComponent
+  }
 ];
 
 @NgModule({

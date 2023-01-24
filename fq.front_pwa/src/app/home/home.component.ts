@@ -18,8 +18,7 @@ export class HomeComponent {
     this.gameTypeLabels = this.gameTypeList.map((gameType: GameType) => gameType.label);
   }
 
-  fetchGames(index: number): Game[] {
-    this.router.navigate(['/games_display']);
-    return this.gameTypeList[index].games;
+  fetchGames(index: number): void {
+    this.router.navigate(['/games_display', { gameTypeId: this.gameTypeList[index].id }]);
   }
 }

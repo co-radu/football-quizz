@@ -1,0 +1,21 @@
+.games-display {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    width: 100vw;
+}
+
+.games-display__placeholder-picture {
+    height: 300px;
+}
+
+.games-display__form,
+.games-display__form__mat-form {
+    width: 90vw;
+}
+
+.games-display__form__mat-form__input {
+    width: 80%;
+}

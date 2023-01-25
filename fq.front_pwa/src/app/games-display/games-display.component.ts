@@ -1,9 +1,11 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { Component, TemplateRef, ViewChild } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { MatBottomSheet, MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { ActivatedRoute } from '@angular/router';
+import { ResultsComponent } from '../bottom-sheets/results/results.component';
+import { GuessPlayerComponent } from '../guess-player/guess-player.component';
 import { GameType } from '../models/game-type/game-type';
 import { Game } from '../models/game/game';
-import { GuessPlayerComponent } from '../guess-player/guess-player.component';
 
 @Component({
     selector: 'app-games-display',
@@ -28,9 +30,16 @@ export class GamesDisplayComponent {
     public buttonIsVisible: boolean = true;
     public responseInput: FormControl = new FormControl('', Validators.required);
     public responseIsValid: boolean = false;
-    public successCounter: number = 0;
 
-    constructor(private route: ActivatedRoute) {
+    private bottomSheetRef = {} as MatBottomSheetRef<ResultsComponent>;
+    public numberGamesInParty: number = this.gamesForParty.length;
+    public successCounter: number = 0;
+    public gameIndex: number = this.gamesForParty.indexOf(this.currentGame);
+
+    constructor(
+        private route: ActivatedRoute,
+        private bottomSheet: MatBottomSheet
+    ) {
         this.startTimer();
     }
 
@@ -64,6 +73,7 @@ export class GamesDisplayComponent {
     }
 
     onSubmit(): void {
+        this.openBottomSheet();
         this.buttonIsVisible = true;
         this.responseIsValid = this.guessPlayerComponent.answerCheck(this.currentGame, this.responseInput.value);
         this.responseInput.reset();
@@ -88,31 +98,30 @@ export class GamesDisplayComponent {
         }
     }
 
-    // private bottomSheetRef = {} as MatBottomSheetRef<ResultsComponent>;
-    //   openBottomSheet(): void {
-    //     this.stopTimer();
-    //     this.bottomSheetRef = this.bottomSheet.open(ResultsComponent, {
-    //       data: {
-    //         roundCounter: this.roundCounter,
-    //         successCounter: this.successCounter,
-    //         respIsValid: this.respIsValid,
-    //         timeLeft: this.timeLeft
-    //       }
-    //     });
-    //     this.bottomSheetRef.afterDismissed().subscribe(() => {
-    //       // if (this.respIsValid) {
-    //       //   this.currentGame.next(
-    //       //     this.guessPlayerGameList[this.randomGame]
-    //       //   );
-    //       //   this.timeLeft =       this.guessPlayerGameList[this.randomGa.gameType.timer;
-    //       //   this.respIsValid = false;
-    //       // }
-    //       // this.timeLeft = 5;
-    //       this.isFound = false;
-    //       this.playerForm.reset();
-    //       if (this.router.url === this.href) {
-    //         this.startTimer()
-    //       }
-    //     });
-    //   }
+    openBottomSheet(): void {
+        this.bottomSheetRef = this.bottomSheet.open(ResultsComponent, {
+            data: {
+                numberGamesInParty: this.numberGamesInParty,
+                successCounter: this.successCounter,
+                responseIsValid: this.responseIsValid,
+                timeLeft: this.timeLeft,
+                gameIndex: this.gameIndex,
+            }
+        });
+        // this.bottomSheetRef.afterDismissed().subscribe(() => {
+        //     // if (this.respIsValid) {
+        //     //   this.currentGame.next(
+        //     //     this.guessPlayerGameList[this.randomGame]
+        //     //   );
+        //     //   this.timeLeft =       this.guessPlayerGameList[this.randomGa.gameType.timer;
+        //     //   this.respIsValid = false;
+        //     // }
+        //     // this.timeLeft = 5;
+        //     // this.isFound = false;
+        //     // this.playerForm.reset();
+        //     // if (this.router.url === this.href) {
+        //     //     this.startTimer()
+        //     // }
+        // });
+    }
 }

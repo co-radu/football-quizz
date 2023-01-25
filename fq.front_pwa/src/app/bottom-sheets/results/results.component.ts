@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component, EventEmitter, Inject, Output } from '@angular/core';
 import { MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { Router } from '@angular/router';
 
@@ -9,50 +9,42 @@ import { Router } from '@angular/router';
 })
 export class ResultsComponent {
 
-  private interval: any;
+  @Output("startTimer") startTimer: EventEmitter<any> = new EventEmitter;
 
-  public roundCounter: number = this.data.roundCounter;
+  public numberGamesInParty: number = this.data.numberGamesInParty;
   public successCounter: number = this.data.successCounter;
-  public maxRoundInGame: number = 2;
   public timeLeft: number = this.data.timeLeft;
+  public responseIsValid: boolean = this.data.responseIsValid;
+  public gameIndex: number = this.data.gameIndex;
+
   public templateToDisplay: string = "";
   public timeToRetry: number = 3;
-  public repIsValid: boolean = this.data.respIsValid;
 
   constructor(
     @Inject(MAT_BOTTOM_SHEET_DATA) public data: {
-      roundCounter: number,
+      numberGamesInParty: number,
       successCounter: number,
-      respIsValid: boolean,
+      responseIsValid: boolean,
       timeLeft: number,
+      gameIndex: number,
     },
     private bottomSheetRef: MatBottomSheetRef<ResultsComponent>,
     private router: Router
   ) {
-    if (!this.repIsValid && this.timeLeft > 0) {
+    if (!this.responseIsValid && this.timeLeft > 0) {
       this.templateToDisplay = "try_again";
-      this.startTimer();
-    } else if (this.timeLeft === 0) {
+    } else if (!this.responseIsValid && this.timeLeft === 0) {
       this.templateToDisplay = "unsuccess";
     }
   }
 
-  nextQuestion() {
+  nextGame(): void {
     this.bottomSheetRef.dismiss();
+    this.startTimer.emit();
   }
 
   redirectToHome() {
     this.bottomSheetRef.dismiss();
     this.router.navigate(['']);
-  }
-
-  startTimer() {
-    this.interval = setInterval(() => {
-      if (this.timeToRetry > 0) {
-        this.timeToRetry--;
-      } else {
-        this.bottomSheetRef.dismiss();
-      }
-    }, 1000)
   }
 }

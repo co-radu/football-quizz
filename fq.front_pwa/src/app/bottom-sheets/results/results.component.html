@@ -1,48 +1,51 @@
-<div *ngIf="repIsValid && roundCounter != maxRoundInGame">
+<div *ngIf="responseIsValid && gameIndex != numberGamesInParty">
     <p>
         Bravo ! <br>
-        Question {{roundCounter}} / {{maxRoundInGame}} <br>
+        Question {{gameIndex}} / {{numberGamesInParty}} <br>
         Ton score : {{successCounter}} <br>
     </p>
     <button mat-raised-button color="warn" (click)="redirectToHome()">
         Abandon
     </button>
-    <button mat-raised-button color="primary" (click)="nextQuestion()">
+    <button mat-raised-button color="primary" (click)="nextGame()">
         Suivant
     </button>
 </div>
-<div *ngIf="templateToDisplay === 'try_again'">
+
+<div *ngIf="templateToDisplay === 'try_again'" && gameIndex !=numberGamesInParty>
     <p>
         Faux !<br>
         Le jeu va reprendre dans {{timeToRetry}} secondes.
     </p>
 </div>
-<div *ngIf="templateToDisplay === 'unsuccess' && roundCounter != maxRoundInGame">
+
+<div *ngIf="templateToDisplay === 'unsuccess' && gameIndex != numberGamesInParty">
     <p>
         Temps écoulé ! <br>
-        Question {{roundCounter}} / {{maxRoundInGame}} <br>
+        Question {{gameIndex}} / {{numberGamesInParty}} <br>
         Ton score : {{successCounter}}<br>
     </p>
     <button mat-raised-button color="warn" (click)="redirectToHome()">
         Abandon
     </button>
-    <button mat-raised-button color="primary" (click)="nextQuestion()">
+    <button mat-raised-button color="primary" (click)="nextGame()">
         Suivant
     </button>
 </div>
-<div *ngIf="roundCounter === maxRoundInGame">
-    <p *ngIf="repIsValid">
+
+<div *ngIf="gameIndex === numberGamesInParty">
+    <p *ngIf="responseIsValid">
         Bravo !
     </p>
-    <p *ngIf="!repIsValid && timeLeft > 0">
+    <p *ngIf="!responseIsValid && timeLeft > 0">
         Faux !
     </p>
-    <p *ngIf="!repIsValid && timeLeft === 0">
+    <p *ngIf="!responseIsValid && timeLeft === 0">
         Temps écoulé !
     </p>
     <p>
         Partie terminée <br>
-        Ton score : {{successCounter}} / {{maxRoundInGame}}
+        Ton score : {{successCounter}} / {{numberGamesInParty}}
     </p>
     <button mat-raised-button color="primary" (click)="redirectToHome()">
         Menu Principal

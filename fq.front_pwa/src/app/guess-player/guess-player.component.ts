@@ -19,12 +19,10 @@
 //   private guessPlayerGameList: Game[];
 //   private currentGame: BehaviorSubject<Game>;
 //   private randomGame: number;
-//   private interval: any;
 //   private bottomSheetRef = {} as MatBottomSheetRef<ResultsComponent>;
 //   private href: string;
 
 
-//   public playerForm: FormControl = new FormControl('', Validators.required);
 //   public roundCounter: number = 0;
 //   public successCounter: number = 0;
 //   public timeLeft: number;

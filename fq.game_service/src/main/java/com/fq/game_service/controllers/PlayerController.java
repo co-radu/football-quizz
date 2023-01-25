@@ -30,8 +30,6 @@ public class PlayerController {
             player.setAcceptableAnswers(new LinkedList<String>(
                     Collections.singletonList(lastName)
             ));
-            Player savedPlayer = playerRepo.save(modelMapper.map(player, Player.class));
-            return modelMapper.map(savedPlayer, PlayerDto.class);
         }
         Player savedPlayer = playerRepo.save(modelMapper.map(player, Player.class));
         return modelMapper.map(savedPlayer, PlayerDto.class);
@@ -60,6 +58,13 @@ public class PlayerController {
     @PutMapping("{id}")
     public ResponseEntity<?> update(@PathVariable @Valid Integer id, @RequestBody PlayerDto player) {
         if (playerRepo.findById(id).isPresent()) {
+            List<String> acceptableAnswers = player.getAcceptableAnswers();
+            String lastName = player.getLastName();
+            if (acceptableAnswers.isEmpty()) {
+                player.setAcceptableAnswers(new LinkedList<String>(
+                        Collections.singletonList(lastName)
+                ));
+            }
             player.setId(id);
             Player playerToUpdate = modelMapper.map(player, Player.class);
             playerRepo.save(playerToUpdate);

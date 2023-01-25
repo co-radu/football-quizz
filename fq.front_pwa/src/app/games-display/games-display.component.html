@@ -1,4 +1,5 @@
 <router-outlet></router-outlet>
+<app-guess-player #guessPlayer></app-guess-player>
 <div class="games-display">
     <img src="/assets/placeholder-pictures/player.png" alt="Football player shadow"
         class="games-display__placeholder-picture">
@@ -15,9 +16,9 @@
     </button>
     <mat-form-field *ngIf="!buttonIsVisible" class="games-display__form__mat-form">
         <mat-label>Nom du joueur</mat-label>
-        <input type="text" matInput class="games-display__form__mat-form__input" required [formControl]="playerForm">
-        <!-- <button mat-icon-button matTooltip="Primary" (click)="onSubmit()">
+        <input type="text" matInput class="games-display__form__mat-form__input" required [formControl]="responseInput">
+        <button mat-icon-button matTooltip="Primary" (click)="onSubmit()">
             <mat-icon>send</mat-icon>
-        </button> -->
+        </button>
     </mat-form-field>
 </div>

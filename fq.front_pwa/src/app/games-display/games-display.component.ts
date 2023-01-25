@@ -28,6 +28,7 @@ export class GamesDisplayComponent {
     public buttonIsVisible: boolean = true;
     public responseInput: FormControl = new FormControl('', Validators.required);
     public responseIsValid: boolean = false;
+    public successCounter: number = 0;
 
     constructor(private route: ActivatedRoute) {
         this.startTimer();
@@ -51,10 +52,8 @@ export class GamesDisplayComponent {
             if (this.timeLeft > 0) {
                 this.timeLeft--;
             } else {
-                console.log('You loose!');
                 clearInterval(this.interval);
-                this.currentGame = this.gameIterator.next().value;
-                this.timeLeft = 5;
+                this.nextGame();
             }
         }, 1000)
     }
@@ -64,10 +63,31 @@ export class GamesDisplayComponent {
         clearInterval(this.interval);
     }
 
-    onSubmit() {
-        this.guessPlayerComponent.answerCheck(this.currentGame, this.responseInput.value);
+    onSubmit(): void {
+        this.buttonIsVisible = true;
+        this.responseIsValid = this.guessPlayerComponent.answerCheck(this.currentGame, this.responseInput.value);
+        this.responseInput.reset();
+        if (this.responseIsValid) {
+            this.nextGame();
+            this.successCounter++;
+            console.log(this.successCounter);
+            console.log('Bravo! - Jeu Suivant!')
+        } else {
+            this.startTimer();
+            console.log('Essaye encore!')
+        }
     }
-    
+
+    nextGame(): void {
+        if (this.gamesForParty.indexOf(this.currentGame) < this.gamesForParty.length - 1) {
+            this.currentGame = this.gameIterator.next().value;
+            this.timeLeft = 5;
+            this.startTimer();
+        } else {
+            console.log('Partie terminée!')
+        }
+    }
+
     // private bottomSheetRef = {} as MatBottomSheetRef<ResultsComponent>;
     //   openBottomSheet(): void {
     //     this.stopTimer();

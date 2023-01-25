@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { GameType } from '../models/game-type/game-type';
 import { Game } from '../models/game/game';
@@ -13,13 +14,16 @@ export class GamesDisplayComponent {
   private gameTypeList: GameType[] = (<GameType[]>JSON.parse(localStorage['game_type_list']));
   private currentGameTypeId: number = +(<string>this.route.snapshot.paramMap.get('gameTypeId'));
   private currentGameType: GameType = (<GameType>this.gameTypeList.find((gameType: GameType) => gameType.id === this.currentGameTypeId));
-  private interval: any;
-
 
   public gamesForParty: Game[] = this.randomSelectedGames();
-  public timeLeft: number = this.currentGameType.timer;
+  private gameIterator: IterableIterator<Game> = this.gamesForParty.values();
+  public currentGame: Game = this.gameIterator.next().value;
+
+  private interval: any;
+  public timeLeft: number = 5;
+  public buttonIsVisible: boolean = true;
+  public playerForm: FormControl = new FormControl('', Validators.required);
   public responseIsValid: boolean = false;
-  public gamerToFind: boolean = false;
 
   constructor(private route: ActivatedRoute) {
     this.startTimer();
@@ -43,13 +47,16 @@ export class GamesDisplayComponent {
       if (this.timeLeft > 0) {
         this.timeLeft--;
       } else {
-        console.log('You loose!')
-        this.stopTimer();
+        console.log('You loose!');
+        clearInterval(this.interval);
+        this.currentGame = this.gameIterator.next().value;
+        this.timeLeft = 5;
       }
     }, 1000)
   }
 
-  stopTimer(): void {
+  inputIsVisible(): void {
+    this.buttonIsVisible = false;
     clearInterval(this.interval);
   }
 

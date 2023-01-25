@@ -10,13 +10,11 @@ import { Game } from '../models/game/game';
 })
 export class HomeComponent {
 
-  private gameTypeList: GameType[] = JSON.parse(localStorage['game_type_list']);
+  private gameTypeList: GameType[] = localStorage['game_type_list'] ? JSON.parse(localStorage['game_type_list']) : this.router.navigate(['']);
 
-  public gameTypeLabels: string[];
+  public gameTypeLabels: string[] = this.gameTypeList.map((gameType: GameType) => gameType.label);
 
-  constructor(private router: Router) {
-    this.gameTypeLabels = this.gameTypeList.map((gameType: GameType) => gameType.label);
-  }
+  constructor(private router: Router) { }
 
   fetchGames(index: number): void {
     this.router.navigate(['/games_display', { gameTypeId: this.gameTypeList[index].id }]);

@@ -11,13 +11,15 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatSelectModule } from '@angular/material/select';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ResultsComponent } from './bottom-sheets/results/results.component';
 import { GamesDisplayComponent } from './games-display/games-display.component';
+import { GuessJerseyComponent } from './guess-jersey/guess-jersey.component';
 import { GuessPlayerComponent } from './guess-player/guess-player.component';
 import { HomeComponent } from './home/home.component';
-import { GuessJerseyComponent } from './guess-jersey/guess-jersey.component';
+
 
 @NgModule({
   declarations: [
@@ -44,7 +46,8 @@ import { GuessJerseyComponent } from './guess-jersey/guess-jersey.component';
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
-    MatBottomSheetModule
+    MatBottomSheetModule,
+    MatSelectModule
   ],
   providers: [
     {

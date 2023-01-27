@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Inject, Output } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { Router } from '@angular/router';
 
@@ -9,8 +9,6 @@ import { Router } from '@angular/router';
 })
 export class ResultsComponent {
 
-  @Output("startTimer") startTimer: EventEmitter<any> = new EventEmitter;
-
   public numberGamesInParty: number = this.data.numberGamesInParty;
   public successCounter: number = this.data.successCounter;
   public timeLeft: number = this.data.timeLeft;
@@ -19,6 +17,8 @@ export class ResultsComponent {
 
   public templateToDisplay: string = "";
   public timeToRetry: number = 3;
+
+  private homeIsRequest: boolean = false;
 
   constructor(
     @Inject(MAT_BOTTOM_SHEET_DATA) public data: {
@@ -29,7 +29,7 @@ export class ResultsComponent {
       gameIndex: number,
     },
     private bottomSheetRef: MatBottomSheetRef<ResultsComponent>,
-    private router: Router
+    private router: Router,
   ) {
     if (!this.responseIsValid && this.timeLeft > 0) {
       this.templateToDisplay = "try_again";
@@ -39,12 +39,13 @@ export class ResultsComponent {
   }
 
   nextGame(): void {
-    this.bottomSheetRef.dismiss();
-    this.startTimer.emit();
+    this.homeIsRequest = false;
+    this.bottomSheetRef.dismiss(this.homeIsRequest);
   }
 
   redirectToHome() {
-    this.bottomSheetRef.dismiss();
     this.router.navigate(['']);
+    this.homeIsRequest = true;
+    this.bottomSheetRef.dismiss(this.homeIsRequest);
   }
 }

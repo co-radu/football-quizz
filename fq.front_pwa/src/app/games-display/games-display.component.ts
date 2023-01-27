@@ -1,4 +1,4 @@
-import { Component, TemplateRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatBottomSheet, MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { ActivatedRoute } from '@angular/router';
@@ -38,9 +38,11 @@ export class GamesDisplayComponent {
 
     constructor(
         private route: ActivatedRoute,
-        private bottomSheet: MatBottomSheet
+        private bottomSheet: MatBottomSheet,
+        private elementRef: ElementRef
     ) {
         this.startTimer();
+        console.log(this.gamesForParty);
     }
 
     randomSelectedGames(): Game[] {
@@ -105,12 +107,15 @@ export class GamesDisplayComponent {
         });
 
 
-        this.bottomSheetRef.afterDismissed().subscribe(() => {
-            this.buttonIsVisible = true;
-            this.responseInput.reset();
-            this.nextGame();
-            this.startTimer();
-        });
+        this.bottomSheetRef.afterDismissed().subscribe(
+            (homeIsRequest: boolean) => {
+                if (!homeIsRequest) {
+                    this.buttonIsVisible = true;
+                    this.responseInput.reset();
+                    this.nextGame();
+                    this.startTimer();
+                }
+            });
     }
 }
 

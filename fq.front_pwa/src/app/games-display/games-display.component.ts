@@ -62,7 +62,7 @@ export class GamesDisplayComponent {
                 this.timeLeft--;
             } else {
                 clearInterval(this.interval);
-                this.nextGame();
+                this.openBottomSheet();
             }
         }, 1000)
     }

@@ -1,21 +1,7 @@
-<router-outlet></router-outlet>
-<!-- <div class="guess-player" (focus)="startTimer()">
-    <img src="/assets/placeholder-pictures/player.png" alt="Football player shadow"
-        class="guess-player__placeholder-picture">
-    <ul class="guesss-player__clueList">
-        <div *ngFor="let clue of clueList" class="guesss-player__clueList__clue">
-            <p>{{clue}}</p>
-        </div>
-    </ul>
-    {{timeLeft}}
-    <button *ngIf="!isFound" mat-raised-button color="primary" class="buttons" (click)="foundToggler()">
-        trouvé
+<mat-form-field class="games-display__form__mat-form" *ngIf="+currentGameTypeId === 1">
+    <mat-label>Nom du joueur</mat-label>
+    <input type="text" matInput class="games-display__form__mat-form__input" required [formControl]="responseInput">
+    <button mat-icon-button matTooltip="Primary" (click)="onSubmit.emit()">
+        <mat-icon>send</mat-icon>
     </button>
-    <mat-form-field *ngIf="isFound" class="guess-player__form__mat-form">
-        <mat-label>Nom du joueur</mat-label>
-        <input type="text" matInput class="guess-player__form__mat-form__input" required [formControl]="playerForm">
-        <button mat-icon-button matTooltip="Primary" (click)="onSubmit()">
-            <mat-icon>send</mat-icon>
-        </button>
-    </mat-form-field>
-</div> -->
+</mat-form-field>

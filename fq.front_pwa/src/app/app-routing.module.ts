@@ -11,7 +11,7 @@ const routes: Routes = [
   {
     path: 'games_display',
     component: GamesDisplayComponent
-  }
+  },
 ];
 
 @NgModule({

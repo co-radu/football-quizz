@@ -17,7 +17,7 @@ import { ResultsComponent } from './bottom-sheets/results/results.component';
 import { GamesDisplayComponent } from './games-display/games-display.component';
 import { GuessPlayerComponent } from './guess-player/guess-player.component';
 import { HomeComponent } from './home/home.component';
-import { GuessJerseyComponent } from './guess-jersey/guess-jersey/guess-jersey.component';
+import { GuessJerseyComponent } from './guess-jersey/guess-jersey.component';
 
 @NgModule({
   declarations: [

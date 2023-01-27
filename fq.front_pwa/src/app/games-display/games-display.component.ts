@@ -3,6 +3,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { MatBottomSheet, MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { ActivatedRoute } from '@angular/router';
 import { ResultsComponent } from '../bottom-sheets/results/results.component';
+import { GuessJerseyComponent } from '../guess-jersey/guess-jersey.component';
 import { GuessPlayerComponent } from '../guess-player/guess-player.component';
 import { GameType } from '../models/game-type/game-type';
 import { Game } from '../models/game/game';
@@ -14,11 +15,16 @@ import { Game } from '../models/game/game';
 })
 export class GamesDisplayComponent {
 
+    // Change the timeleft when component development is finished.
+
     @ViewChild('guessPlayer')
-    public guessPlayerComponent!: GuessPlayerComponent;
+    private guessPlayerComponent!: GuessPlayerComponent;
+
+    @ViewChild('guessJersey')
+    private guessJerseyComponent!: GuessJerseyComponent;
 
     private gameTypeList: GameType[] = (<GameType[]>JSON.parse(localStorage['game_type_list']));
-    private currentGameTypeId: number = +(<string>this.route.snapshot.paramMap.get('gameTypeId'));
+    public currentGameTypeId: number = +(<string>this.route.snapshot.paramMap.get('gameTypeId'));
     private currentGameType: GameType = (<GameType>this.gameTypeList.find((gameType: GameType) => gameType.id === this.currentGameTypeId));
 
     public gamesForParty: Game[] = this.randomSelectedGames();
@@ -52,7 +58,7 @@ export class GamesDisplayComponent {
             } else {
                 gamesArray.push(gameRandom);
             }
-        } while (gamesArray.length < 5);
+        } while (gamesArray.length < 1);
         return gamesArray;
     }
 
@@ -73,8 +79,10 @@ export class GamesDisplayComponent {
     }
 
     onSubmit(): void {
-        this.responseIsValid = this.guessPlayerComponent.answerCheck(this.currentGame, this.responseInput.value);
-        if (this.responseIsValid) {
+        let checkPlayer: boolean = this.guessPlayerComponent.answerCheck(this.currentGame);
+        let checkJersey: boolean = this.guessJerseyComponent.jerseyCheck(this.currentGame);
+        if (checkJersey || checkPlayer) {
+            this.responseIsValid = true;
             this.successCounter++;
         }
         this.openBottomSheet();

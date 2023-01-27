@@ -17,6 +17,7 @@ export class ResultsComponent {
 
   public templateToDisplay: string = "";
   public timeToRetry: number = 3;
+  private interval: any;
 
   private homeIsRequest: boolean = false;
 
@@ -33,19 +34,31 @@ export class ResultsComponent {
   ) {
     if (!this.responseIsValid && this.timeLeft > 0) {
       this.templateToDisplay = "try_again";
+      this.startRetryTimer();
     } else if (!this.responseIsValid && this.timeLeft === 0) {
       this.templateToDisplay = "unsuccess";
     }
   }
 
-  nextGame(): void {
+  bottomSheetDismiss(): void {
     this.homeIsRequest = false;
     this.bottomSheetRef.dismiss(this.homeIsRequest);
   }
 
-  redirectToHome() {
+  redirectToHome(): void {
     this.router.navigate(['']);
     this.homeIsRequest = true;
     this.bottomSheetRef.dismiss(this.homeIsRequest);
+  }
+
+  startRetryTimer(): void {
+    this.interval = setInterval(() => {
+      if (this.timeToRetry > 0) {
+        this.timeToRetry--;
+      } else {
+        clearInterval(this.interval);
+        this.bottomSheetDismiss();
+      }
+    }, 1000)
   }
 }

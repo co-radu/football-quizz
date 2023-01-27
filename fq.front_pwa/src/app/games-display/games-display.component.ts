@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatBottomSheet, MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { ActivatedRoute } from '@angular/router';
@@ -39,10 +39,8 @@ export class GamesDisplayComponent {
     constructor(
         private route: ActivatedRoute,
         private bottomSheet: MatBottomSheet,
-        private elementRef: ElementRef
     ) {
         this.startTimer();
-        console.log(this.gamesForParty);
     }
 
     randomSelectedGames(): Game[] {
@@ -78,9 +76,6 @@ export class GamesDisplayComponent {
         this.responseIsValid = this.guessPlayerComponent.answerCheck(this.currentGame, this.responseInput.value);
         if (this.responseIsValid) {
             this.successCounter++;
-            console.log('Bravo! - Jeu Suivant!')
-        } else {
-            console.log('Essaye encore!')
         }
         this.openBottomSheet();
     }
@@ -90,8 +85,6 @@ export class GamesDisplayComponent {
             this.currentGame = this.gameIterator.next().value;
             this.gameIndex++;
             this.timeLeft = 5;
-        } else {
-            console.log('Partie terminée!')
         }
     }
 
@@ -105,30 +98,17 @@ export class GamesDisplayComponent {
                 gameIndex: (this.gameIndex + 1),
             }
         });
-
-
         this.bottomSheetRef.afterDismissed().subscribe(
             (homeIsRequest: boolean) => {
                 if (!homeIsRequest) {
-                    this.buttonIsVisible = true;
-                    this.responseInput.reset();
-                    this.nextGame();
                     this.startTimer();
+                    if (this.responseIsValid || this.timeLeft === 0) {
+                        this.nextGame();
+                    }
                 }
-            });
+                this.buttonIsVisible = true;
+                this.responseInput.reset();
+            }
+        );
     }
 }
-
-  // if (this.respIsValid) {
-            //   this.currentGame.next(
-            //     this.guessPlayerGameList[this.randomGame]
-            //   );
-            //   this.timeLeft =       this.guessPlayerGameList[this.randomGa.gameType.timer;
-            //   this.respIsValid = false;
-            // }
-            // this.timeLeft = 5;
-            // this.isFound = false;
-            // this.playerForm.reset();
-            // if (this.router.url === this.href) {
-            //     this.startTimer()
-            // }

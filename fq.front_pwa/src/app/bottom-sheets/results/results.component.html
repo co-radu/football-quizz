@@ -12,7 +12,7 @@
     </button>
 </div>
 
-<div *ngIf="templateToDisplay === 'try_again'" && gameIndex !=numberGamesInParty>
+<div *ngIf="templateToDisplay === 'try_again' && gameIndex != numberGamesInParty">
     <p>
         Faux !<br>
         Le jeu va reprendre dans {{timeToRetry}} secondes.
@@ -34,15 +34,6 @@
 </div>
 
 <div *ngIf="gameIndex === numberGamesInParty">
-    <p *ngIf="responseIsValid">
-        Bravo !
-    </p>
-    <p *ngIf="!responseIsValid && timeLeft > 0">
-        Faux !
-    </p>
-    <p *ngIf="!responseIsValid && timeLeft === 0">
-        Temps écoulé !
-    </p>
     <p>
         Partie terminée <br>
         Ton score : {{successCounter}} / {{numberGamesInParty}}

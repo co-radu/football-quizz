@@ -73,26 +73,21 @@ export class GamesDisplayComponent {
     }
 
     onSubmit(): void {
-        this.openBottomSheet();
-        this.buttonIsVisible = true;
         this.responseIsValid = this.guessPlayerComponent.answerCheck(this.currentGame, this.responseInput.value);
-        this.responseInput.reset();
         if (this.responseIsValid) {
-            this.nextGame();
             this.successCounter++;
-            console.log(this.successCounter);
             console.log('Bravo! - Jeu Suivant!')
         } else {
-            this.startTimer();
             console.log('Essaye encore!')
         }
+        this.openBottomSheet();
     }
 
     nextGame(): void {
-        if (this.gamesForParty.indexOf(this.currentGame) < this.gamesForParty.length - 1) {
+        if (this.gameIndex < (this.gamesForParty.length - 1)) {
             this.currentGame = this.gameIterator.next().value;
+            this.gameIndex++;
             this.timeLeft = 5;
-            this.startTimer();
         } else {
             console.log('Partie terminée!')
         }
@@ -105,23 +100,30 @@ export class GamesDisplayComponent {
                 successCounter: this.successCounter,
                 responseIsValid: this.responseIsValid,
                 timeLeft: this.timeLeft,
-                gameIndex: this.gameIndex,
+                gameIndex: (this.gameIndex + 1),
             }
         });
-        // this.bottomSheetRef.afterDismissed().subscribe(() => {
-        //     // if (this.respIsValid) {
-        //     //   this.currentGame.next(
-        //     //     this.guessPlayerGameList[this.randomGame]
-        //     //   );
-        //     //   this.timeLeft =       this.guessPlayerGameList[this.randomGa.gameType.timer;
-        //     //   this.respIsValid = false;
-        //     // }
-        //     // this.timeLeft = 5;
-        //     // this.isFound = false;
-        //     // this.playerForm.reset();
-        //     // if (this.router.url === this.href) {
-        //     //     this.startTimer()
-        //     // }
-        // });
+
+
+        this.bottomSheetRef.afterDismissed().subscribe(() => {
+            this.buttonIsVisible = true;
+            this.responseInput.reset();
+            this.nextGame();
+            this.startTimer();
+        });
     }
 }
+
+  // if (this.respIsValid) {
+            //   this.currentGame.next(
+            //     this.guessPlayerGameList[this.randomGame]
+            //   );
+            //   this.timeLeft =       this.guessPlayerGameList[this.randomGa.gameType.timer;
+            //   this.respIsValid = false;
+            // }
+            // this.timeLeft = 5;
+            // this.isFound = false;
+            // this.playerForm.reset();
+            // if (this.router.url === this.href) {
+            //     this.startTimer()
+            // }

@@ -1,23 +1,29 @@
 <router-outlet></router-outlet>
 
 <div class="games-display">
-    <img src="/assets/placeholder-pictures/player.png" alt="Football player shadow"
-        class="games-display__placeholder-picture">
-    <ul class="games-display__clueList">
-        <div *ngFor="let clue of currentGame.clueList" class="games-display__clueList__clue">
-            <p>{{clue}}</p>
-        </div>
-    </ul>
-    <p>
-        {{timeLeft}}
-    </p>
-    <button *ngIf="buttonIsVisible" mat-raised-button color="primary" class="buttons" (click)="inputIsVisible()">
-        trouvé
-    </button>
-    <div *ngIf="!buttonIsVisible">
-        <app-guess-player #guessPlayer [currentGameTypeId]="currentGameTypeId.toString()"
-            (onSubmit)="onSubmit()"></app-guess-player>
-        <app-guess-jersey #guessJersey [currentGameTypeId]="currentGameTypeId.toString()"
-            (onSubmit)="onSubmit()"></app-guess-jersey>
+
+    <div *ngIf="this.currentGameTypeId === 3; else elseBlock">
+        <app-guess-composition #guessComposition (onSubmit)="onSubmit()"></app-guess-composition>
     </div>
+
+    <ng-template #elseBlock>
+        <img src="/assets/placeholder-pictures/player.png" alt="Football player shadow"
+            class="games-display__placeholder-picture">
+        <ul class="games-display__clueList">
+            <div *ngFor="let clue of currentGame.clueList" class="games-display__clueList__clue">
+                <p>{{clue}}</p>
+            </div>
+        </ul>
+        <p>
+            {{timeLeft}}
+        </p>
+        <button *ngIf="buttonIsVisible" mat-raised-button color="primary" class="buttons" (click)="inputIsVisible()">
+            trouvé
+        </button>
+        <div *ngIf="!buttonIsVisible">
+            <app-guess-player #guessPlayer (onSubmit)="onSubmit()"></app-guess-player>
+            <app-guess-jersey #guessJersey (onSubmit)="onSubmit()"></app-guess-jersey>
+        </div>
+    </ng-template>
+
 </div>

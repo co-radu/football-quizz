@@ -12,9 +12,6 @@ export class GuessJerseyComponent {
   @Output('onSubmit')
   public onSubmit: EventEmitter<any> = new EventEmitter();
 
-  @Input()
-  public currentGameTypeId: string = '';
-
   public jerseyForm: FormGroup = new FormGroup({
     team: new FormControl('', Validators.required),
     year: new FormControl('', Validators.required),

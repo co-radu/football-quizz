@@ -19,6 +19,7 @@ import { GamesDisplayComponent } from './games-display/games-display.component';
 import { GuessJerseyComponent } from './guess-jersey/guess-jersey.component';
 import { GuessPlayerComponent } from './guess-player/guess-player.component';
 import { HomeComponent } from './home/home.component';
+import { GuessCompositionComponent } from './guess-composition/guess-composition.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { HomeComponent } from './home/home.component';
     GamesDisplayComponent,
     ResultsComponent,
     GuessPlayerComponent,
-    GuessJerseyComponent
+    GuessJerseyComponent,
+    GuessCompositionComponent
   ],
   imports: [
     BrowserModule,

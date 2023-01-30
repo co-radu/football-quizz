@@ -1,4 +1,4 @@
-<mat-form-field class="games-display__form__mat-form" *ngIf="+currentGameTypeId === 1">
+<mat-form-field class="games-display__form__mat-form">
     <mat-label>Nom du joueur</mat-label>
     <input type="text" matInput class="games-display__form__mat-form__input" required [formControl]="responseInput">
     <button mat-icon-button matTooltip="Primary" (click)="onSubmit.emit()">

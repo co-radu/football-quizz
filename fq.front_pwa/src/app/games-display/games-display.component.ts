@@ -7,6 +7,7 @@ import { GuessJerseyComponent } from '../guess-jersey/guess-jersey.component';
 import { GuessPlayerComponent } from '../guess-player/guess-player.component';
 import { GameType } from '../models/game-type/game-type';
 import { Game } from '../models/game/game';
+import { GuessCompositionComponent } from '../guess-composition/guess-composition.component';
 
 @Component({
     selector: 'app-games-display',
@@ -23,18 +24,21 @@ export class GamesDisplayComponent {
     @ViewChild('guessJersey')
     private guessJerseyComponent!: GuessJerseyComponent;
 
-    private bottomSheetRef = {} as MatBottomSheetRef<ResultsComponent>;
+    @ViewChild('guessComposition')
+    private guessCompositionComponent!: GuessCompositionComponent;
 
+    private bottomSheetRef = {} as MatBottomSheetRef<ResultsComponent>;
 
     private gameTypeList: GameType[] = (<GameType[]>JSON.parse(localStorage['game_type_list']));
     public currentGameTypeId: number = +(<string>this.route.snapshot.paramMap.get('gameTypeId'));
     private currentGameType: GameType = (<GameType>this.gameTypeList.find((gameType: GameType) => gameType.id === this.currentGameTypeId));
 
-    public numberGamesInParty: number = 2;
+    public numberGamesInParty: number = 1;
     public gamesForParty: Game[] = this.randomSelectedGames();
 
     private gameIterator: IterableIterator<Game> = this.gamesForParty.values();
     public currentGame: Game = this.gameIterator.next().value;
+    public currentGameToString: string = JSON.stringify(this.currentGame);
     public gameIndex: number = this.gamesForParty.indexOf(this.currentGame);
 
     private interval: any;
@@ -84,6 +88,7 @@ export class GamesDisplayComponent {
     onSubmit(): void {
         let checkPlayer: boolean = this.currentGameTypeId === 1 ? this.guessPlayerComponent.answerCheck(this.currentGame) : false;
         let checkJersey: boolean = this.currentGameTypeId === 2 ? this.guessJerseyComponent.jerseyCheck(this.currentGame) : false;
+        let checkComposition: boolean = this.currentGameTypeId === 3 ? this.guessCompositionComponent.compositionCheck(this.currentGame) : false;
         if (checkPlayer || checkJersey) {
             this.responseIsValid = true;
             this.successCounter++;

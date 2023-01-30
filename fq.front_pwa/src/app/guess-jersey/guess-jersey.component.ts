@@ -33,14 +33,12 @@ export class GuessJerseyComponent {
   }
 
   jerseyCheck(currentGame: Game): boolean {
-    let teamForm: string = this.jerseyForm.get('team')?.value;
+    let teamForm: string = this.jerseyForm.get('team')?.value.toLowerCase();
     let seasonForm: number = this.jerseyForm.get('year')?.value;
-    if (teamForm === currentGame.jersey.team && seasonForm === currentGame.jersey.season) {
+    if (teamForm === currentGame.jersey.team.toLowerCase() && seasonForm === currentGame.jersey.season) {
       return true;
     } else {
       return false;
     }
   }
-
-
 }

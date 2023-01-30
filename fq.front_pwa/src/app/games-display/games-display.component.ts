@@ -15,7 +15,7 @@ import { Game } from '../models/game/game';
 })
 export class GamesDisplayComponent {
 
-    // Change the timeleft when component development is finished.
+    // Change timeleft and numberGamesInParty variables when component development is finished.
 
     @ViewChild('guessPlayer')
     private guessPlayerComponent!: GuessPlayerComponent;
@@ -23,24 +23,27 @@ export class GamesDisplayComponent {
     @ViewChild('guessJersey')
     private guessJerseyComponent!: GuessJerseyComponent;
 
+    private bottomSheetRef = {} as MatBottomSheetRef<ResultsComponent>;
+
+
     private gameTypeList: GameType[] = (<GameType[]>JSON.parse(localStorage['game_type_list']));
     public currentGameTypeId: number = +(<string>this.route.snapshot.paramMap.get('gameTypeId'));
     private currentGameType: GameType = (<GameType>this.gameTypeList.find((gameType: GameType) => gameType.id === this.currentGameTypeId));
 
+    public numberGamesInParty: number = 2;
     public gamesForParty: Game[] = this.randomSelectedGames();
+
     private gameIterator: IterableIterator<Game> = this.gamesForParty.values();
     public currentGame: Game = this.gameIterator.next().value;
+    public gameIndex: number = this.gamesForParty.indexOf(this.currentGame);
 
     private interval: any;
     public timeLeft: number = 5;
     public buttonIsVisible: boolean = true;
+
     public responseInput: FormControl = new FormControl('', Validators.required);
     public responseIsValid: boolean = false;
-
-    private bottomSheetRef = {} as MatBottomSheetRef<ResultsComponent>;
-    public numberGamesInParty: number = this.gamesForParty.length;
     public successCounter: number = 0;
-    public gameIndex: number = this.gamesForParty.indexOf(this.currentGame);
 
     constructor(
         private route: ActivatedRoute,
@@ -58,7 +61,7 @@ export class GamesDisplayComponent {
             } else {
                 gamesArray.push(gameRandom);
             }
-        } while (gamesArray.length < 1);
+        } while (gamesArray.length < this.numberGamesInParty);
         return gamesArray;
     }
 

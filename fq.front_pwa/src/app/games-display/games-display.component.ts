@@ -79,9 +79,9 @@ export class GamesDisplayComponent {
     }
 
     onSubmit(): void {
-        let checkPlayer: boolean = this.guessPlayerComponent.answerCheck(this.currentGame);
-        let checkJersey: boolean = this.guessJerseyComponent.jerseyCheck(this.currentGame);
-        if (checkJersey || checkPlayer) {
+        let checkPlayer: boolean = this.currentGameTypeId === 1 ? this.guessPlayerComponent.answerCheck(this.currentGame) : false;
+        let checkJersey: boolean = this.currentGameTypeId === 2 ? this.guessJerseyComponent.jerseyCheck(this.currentGame) : false;
+        if (checkPlayer || checkJersey) {
             this.responseIsValid = true;
             this.successCounter++;
         }

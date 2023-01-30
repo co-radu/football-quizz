@@ -42,7 +42,7 @@ export class GamesDisplayComponent {
     public gameIndex: number = this.gamesForParty.indexOf(this.currentGame);
 
     private interval: any;
-    public timeLeft: number = 5;
+    public timeLeft: number = 50;
     public buttonIsVisible: boolean = true;
 
     public responseInput: FormControl = new FormControl('', Validators.required);
@@ -53,7 +53,7 @@ export class GamesDisplayComponent {
         private route: ActivatedRoute,
         private bottomSheet: MatBottomSheet,
     ) {
-        this.startTimer();
+        // this.startTimer();
     }
 
     randomSelectedGames(): Game[] {

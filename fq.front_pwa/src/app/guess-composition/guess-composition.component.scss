@@ -1,0 +1,19 @@
+.guess-composition__soccer-field {
+    height: 545px;
+    width: 340px;
+    background-color: #348c31;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.guess-composition__soccer-field__button {
+    height: 40px;
+    width: 40px;
+    background-color: black;
+    border-radius: 100%;
+}
+
+.guess-composition__soccer-field__input {
+    display: none;
+}

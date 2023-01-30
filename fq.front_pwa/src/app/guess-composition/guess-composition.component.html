@@ -1,0 +1,43 @@
+<form class="guess-composition" [formGroup]="compositionForm">
+    <div class="guess-composition__soccer-field">
+
+        <!-- FORWARDS -->
+        <div class="guess-composition__soccer-field__forwards" *ngFor="let forward of forwards.controls; let i =index">
+            <button class="guess-composition__soccer-field__button" id="button_forward_{{i}}"
+                (click)="openedInput('forward', i)">
+            </button>
+            <input type="text" class="guess-composition__soccer-field__input" [formControl]="getForwards(i)"
+                id="forward_{{i}}" required>
+        </div>
+
+        <!-- MIDFIELDERS -->
+        <div class="guess-composition__soccer-field__midfielders"
+            *ngFor="let midfielder of midfielders.controls; let i =index">
+            <button class="guess-composition__soccer-field__button" id="button_midfielder_{{i}}"
+                (click)="openedInput('midfielder', i)">
+            </button>
+            <input type="text" class="guess-composition__soccer-field__input" [formControl]="getMidfielders(i)"
+                id="midfielder_{{i}}" required>
+        </div>
+
+        <!-- DEFENDERS -->
+        <div class="guess-composition__soccer-field__defenders"
+            *ngFor="let defender of defenders.controls; let i =index">
+            <button class="guess-composition__soccer-field__button" id="button_defender_{{i}}"
+                (click)="openedInput('defender', i)">
+            </button>
+            <input type="text" class="guess-composition__soccer-field__input" [formControl]="getDefenders(i)"
+                id="defender_{{i}}" required>
+        </div>
+
+        <!-- GOALKEEPER -->
+        <div class="guess-composition__soccer-field__goalkeeper">
+            <button class="guess-composition__soccer-field__button" id="button_goalkeeper_0"
+                (click)="openedInput('goalkeeper', 0)">
+            </button>
+            <input type="text" class="guess-composition__soccer-field__input" formControlName="goalkeeper"
+                id="goalkeeper_0" required>
+        </div>
+
+    </div>
+</form>

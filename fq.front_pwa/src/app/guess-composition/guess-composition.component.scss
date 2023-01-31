@@ -4,7 +4,12 @@
     background-color: #348c31;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-evenly;
+}
+
+.guess-composition__soccer-field__playersContainer {
+    display: flex;
+    justify-content: space-evenly;
 }
 
 .guess-composition__soccer-field__button {
@@ -12,8 +17,12 @@
     width: 40px;
     background-color: black;
     border-radius: 100%;
+    color: white;
 }
 
-.guess-composition__soccer-field__input {
+.guess-composition__soccer-field__matForm {
     display: none;
+    position: absolute;
+    left: 5vw;
+    flex-direction: row;
 }

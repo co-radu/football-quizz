@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { AbstractControl, FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { Game } from '../models/game/game';
 
 @Component({
@@ -38,7 +38,7 @@ export class GuessCompositionComponent {
     goalkeeper: new FormControl('')
   });
 
-  private inputClasses: string[] = ['forward', 'midfielder', 'defender', 'goalkeeper'];
+  private PlayerClasses: string[] = ['forward', 'midfielder', 'defender', 'goalkeeper'];
   private inputIndex: number[] = Array.from({ length: this.defenders.length }, (v, i) => i);
 
   getForwards(index: number): FormControl {
@@ -53,23 +53,27 @@ export class GuessCompositionComponent {
     return this.defenders.controls[index] as FormControl;
   }
 
-  openedInput(inputClass: string, index: number): void {
+  openedInput(PlayerClass: string, index: number): void {
     this.closedAllInputs();
-    const input = <HTMLInputElement>document.getElementById(`${inputClass}_${index}`);
-    const button = <HTMLButtonElement>document.getElementById(`button_${inputClass}_${index}`);
-    input.style.display = 'flex';
-    button.style.display = 'none';
+    const matInput: HTMLElement = <HTMLElement>document.getElementById(`${PlayerClass}_${index}`);
+    const playerButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById(`button_${PlayerClass}_${index}`);
+    matInput.style.display = 'flex';
+    playerButton.style.backgroundColor = 'red';
   }
 
   closedAllInputs(): void {
-    this.inputClasses.forEach(
-      (inputClass: string) => {
+    this.PlayerClasses.forEach(
+      (PlayerClass: string) => {
         this.inputIndex.forEach(
           (index: number) => {
-            const input = <HTMLInputElement>document.getElementById(`${inputClass}_${index}`);
-            const button = <HTMLButtonElement>document.getElementById(`button_${inputClass}_${index}`);
-            input ? input.style.display = 'none' : null;
-            button ? button.style.display = 'flex' : null;
+            const matInput: HTMLElement = <HTMLElement>document.getElementById(`${PlayerClass}_${index}`);
+            const playerButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById(`button_${PlayerClass}_${index}`);
+            const input: HTMLInputElement = <HTMLInputElement>document.getElementById(`input_${PlayerClass}_${index}`);
+            matInput ? matInput.style.display = 'none' : null;
+            playerButton ? playerButton.style.backgroundColor = 'black' : null;
+            if (input && input.validity.valid) {
+              playerButton.style.backgroundColor = '#23DC3D';
+            }
           }
         );
       });

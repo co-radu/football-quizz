@@ -38,6 +38,9 @@ export class GuessCompositionComponent {
     goalkeeper: new FormControl('')
   });
 
+  private inputClasses: string[] = ['forward', 'midfielder', 'defender', 'goalkeeper'];
+  private inputIndex: number[] = Array.from({ length: this.defenders.length }, (v, i) => i);
+
   getForwards(index: number): FormControl {
     return this.forwards.controls[index] as FormControl;
   }
@@ -50,11 +53,26 @@ export class GuessCompositionComponent {
     return this.defenders.controls[index] as FormControl;
   }
 
-  openedInput(inputClass: string, index: number) {
+  openedInput(inputClass: string, index: number): void {
+    this.closedAllInputs();
     const input = <HTMLInputElement>document.getElementById(`${inputClass}_${index}`);
     const button = <HTMLButtonElement>document.getElementById(`button_${inputClass}_${index}`);
     input.style.display = 'flex';
     button.style.display = 'none';
+  }
+
+  closedAllInputs(): void {
+    this.inputClasses.forEach(
+      (inputClass: string) => {
+        this.inputIndex.forEach(
+          (index: number) => {
+            const input = <HTMLInputElement>document.getElementById(`${inputClass}_${index}`);
+            const button = <HTMLButtonElement>document.getElementById(`button_${inputClass}_${index}`);
+            input ? input.style.display = 'none' : null;
+            button ? button.style.display = 'flex' : null;
+          }
+        );
+      });
   }
 
   compositionCheck(currentGame: Game) {

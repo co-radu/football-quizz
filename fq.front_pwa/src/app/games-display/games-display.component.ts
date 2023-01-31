@@ -89,7 +89,7 @@ export class GamesDisplayComponent {
         let checkPlayer: boolean = this.currentGameTypeId === 1 ? this.guessPlayerComponent.answerCheck(this.currentGame) : false;
         let checkJersey: boolean = this.currentGameTypeId === 2 ? this.guessJerseyComponent.jerseyCheck(this.currentGame) : false;
         let checkComposition: boolean = this.currentGameTypeId === 3 ? this.guessCompositionComponent.compositionCheck(this.currentGame) : false;
-        if (checkPlayer || checkJersey) {
+        if (checkPlayer || checkJersey || checkComposition) {
             this.responseIsValid = true;
             this.successCounter++;
         }

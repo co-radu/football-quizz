@@ -3,7 +3,12 @@
 <div class="games-display">
 
     <div *ngIf="this.currentGameTypeId === 3; else elseBlock">
+        {{currentGame.composition.teamList[0]}} -
+        {{currentGame.composition.teamList[1]}}<br>
+        {{currentGame.composition.label}}
         <app-guess-composition #guessComposition (onSubmit)="onSubmit()"></app-guess-composition>
+        {{timeLeft}}
+        <button (click)="onSubmit()">Validé</button>
     </div>
 
     <ng-template #elseBlock>

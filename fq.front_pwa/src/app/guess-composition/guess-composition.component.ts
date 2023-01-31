@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { Game } from '../models/game/game';
+import { Player } from '../models/player/player';
 
 @Component({
   selector: 'app-guess-composition',
@@ -35,7 +36,7 @@ export class GuessCompositionComponent {
     forwards: this.forwards,
     midfielders: this.midfielders,
     defenders: this.defenders,
-    goalkeeper: new FormControl('')
+    goalkeeper: new FormControl()
   });
 
   private PlayerClasses: string[] = ['forward', 'midfielder', 'defender', 'goalkeeper'];
@@ -76,10 +77,27 @@ export class GuessCompositionComponent {
             }
           }
         );
-      });
+      }
+    );
   }
 
-  compositionCheck(currentGame: Game) {
-    return true;
+  compositionCheck(currentGame: Game): boolean {
+    const defenders: string[] = this.compositionForm.value.defenders.map((defender: string) => defender.toLowerCase());
+    const midfielders: string[] = this.compositionForm.value.midfielders.map((midfielder: string) => midfielder.toLowerCase());
+    const forwards: string[] = this.compositionForm.value.forwards.map((forward: string) => forward.toLowerCase());
+    const composition: string[] = defenders.concat(midfielders).concat(forwards);
+    const currentGamePlayerName: string[] = [];
+
+    composition.splice(0, 0, this.compositionForm.value.goalkeeper.toLowerCase());
+    currentGame.composition.playerList.forEach(
+      (player: Player) => {
+        currentGamePlayerName.push(player.lastName.toLowerCase());
+      }
+    );
+    if (JSON.stringify(composition) === JSON.stringify(currentGamePlayerName)) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

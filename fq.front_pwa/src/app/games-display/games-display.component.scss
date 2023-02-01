@@ -14,6 +14,12 @@
     font-size: 1.5rem;
 }
 
+.gamesDisplay__guessComposition__buttonsList {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
 .gamesDisplay__placeholder-picture {
     height: 300px;
 }

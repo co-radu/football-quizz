@@ -1,6 +1,5 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef } from '@angular/material/bottom-sheet';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-results',
@@ -30,7 +29,6 @@ export class ResultsComponent {
       gameIndex: number,
     },
     private bottomSheetRef: MatBottomSheetRef<ResultsComponent>,
-    private router: Router,
   ) {
     if (!this.responseIsValid && this.timeLeft > 0) {
       this.templateToDisplay = "try_again";
@@ -46,7 +44,6 @@ export class ResultsComponent {
   }
 
   redirectToHome(): void {
-    this.router.navigate(['']);
     this.homeIsRequest = true;
     this.bottomSheetRef.dismiss(this.homeIsRequest);
   }

@@ -1,0 +1,20 @@
+h2 {
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: center;
+}
+
+p {
+    text-transform: uppercase;
+    font-style: italic;
+}
+
+.buttonsList {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.gameRestart {
+    text-transform: none;
+}

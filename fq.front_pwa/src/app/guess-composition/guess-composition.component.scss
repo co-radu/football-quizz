@@ -1,18 +1,18 @@
-.guess-composition__soccer-field {
-    height: 545px;
-    width: 340px;
+.guessComposition__soccerField {
+    height: 70vh;
+    width: 92vw;
     background-color: #348c31;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
 }
 
-.guess-composition__soccer-field__playersContainer {
+.guessComposition__soccerField__playersContainer {
     display: flex;
     justify-content: space-evenly;
 }
 
-.guess-composition__soccer-field__button {
+.guessComposition__soccerField__button {
     height: 40px;
     width: 40px;
     background-color: black;
@@ -20,9 +20,8 @@
     color: white;
 }
 
-.guess-composition__soccer-field__matForm {
+.guessComposition__soccerField__matForm {
     display: none;
     position: absolute;
     left: 5vw;
-    flex-direction: row;
 }

@@ -1,13 +1,13 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatBottomSheet, MatBottomSheetRef } from '@angular/material/bottom-sheet';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ResultsComponent } from '../bottom-sheets/results/results.component';
+import { GuessCompositionComponent } from '../guess-composition/guess-composition.component';
 import { GuessJerseyComponent } from '../guess-jersey/guess-jersey.component';
 import { GuessPlayerComponent } from '../guess-player/guess-player.component';
 import { GameType } from '../models/game-type/game-type';
 import { Game } from '../models/game/game';
-import { GuessCompositionComponent } from '../guess-composition/guess-composition.component';
 
 @Component({
     selector: 'app-games-display',
@@ -33,7 +33,7 @@ export class GamesDisplayComponent {
     public currentGameTypeId: number = +(<string>this.route.snapshot.paramMap.get('gameTypeId'));
     private currentGameType: GameType = (<GameType>this.gameTypeList.find((gameType: GameType) => gameType.id === this.currentGameTypeId));
 
-    public numberGamesInParty: number = 1;
+    public numberGamesInParty: number = 2;
     public gamesForParty: Game[] = this.randomSelectedGames();
 
     private gameIterator: IterableIterator<Game> = this.gamesForParty.values();
@@ -52,6 +52,7 @@ export class GamesDisplayComponent {
     constructor(
         private route: ActivatedRoute,
         private bottomSheet: MatBottomSheet,
+        private router: Router
     ) {
         // this.startTimer();
     }
@@ -104,6 +105,11 @@ export class GamesDisplayComponent {
         }
     }
 
+    redirectToHome() {
+        clearInterval(this.interval);
+        this.router.navigate(['']);
+    }
+
     openBottomSheet(): void {
         this.bottomSheetRef = this.bottomSheet.open(ResultsComponent, {
             data: {
@@ -121,6 +127,8 @@ export class GamesDisplayComponent {
                     if (this.responseIsValid || this.timeLeft === 0) {
                         this.nextGame();
                     }
+                } else {
+                    this.redirectToHome();
                 }
                 this.buttonIsVisible = true;
                 this.responseInput.reset();

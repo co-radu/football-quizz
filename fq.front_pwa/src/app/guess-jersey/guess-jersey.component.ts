@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Game } from '../models/game/game';
 
@@ -8,9 +8,6 @@ import { Game } from '../models/game/game';
   styleUrls: ['./guess-jersey.component.scss']
 })
 export class GuessJerseyComponent {
-
-  @Output('onSubmit')
-  public onSubmit: EventEmitter<any> = new EventEmitter();
 
   public jerseyForm: FormGroup = new FormGroup({
     team: new FormControl('', Validators.required),

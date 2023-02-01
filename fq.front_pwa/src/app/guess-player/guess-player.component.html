@@ -1,7 +1,4 @@
-<mat-form-field class="games-display__form__mat-form">
+<mat-form-field class="playerForm">
     <mat-label>Nom du joueur</mat-label>
-    <input type="text" matInput class="games-display__form__mat-form__input" required [formControl]="responseInput">
-    <button mat-icon-button matTooltip="Primary" (click)="onSubmit.emit()">
-        <mat-icon>send</mat-icon>
-    </button>
+    <input type="text" matInput class="playerForm__input" [formControl]="responseInput" required minlength="3">
 </mat-form-field>

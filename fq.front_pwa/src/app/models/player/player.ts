@@ -19,4 +19,5 @@ export class Player {
     lastName: string;
     acceptableAnswers: string[];
     pictureUrl: string;
+    placeHolderImgUrl: string = "/assets/placeholder-pictures/player.png";
 }

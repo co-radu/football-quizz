@@ -1,19 +1,14 @@
-<form [formGroup]="jerseyForm">
-    <mat-form-field class="games-display__form__mat-form">
-
+<form [formGroup]="jerseyForm" class="jerseyForm">
+    <mat-form-field class="jerseyForm__team">
         <mat-label>&#201;quipe</mat-label>
-        <input type="text" matInput class="games-display__form__mat-form__input" formControlName="team" required>
-
+        <input type="text" matInput class="jerseyForm__team__input" formControlName="team" required minlength="3">
+    </mat-form-field>
+    <mat-form-field class="jerseyForm__year">
         <mat-label>Année</mat-label>
         <mat-select formControlName="year">
             <mat-option *ngFor=" let year of yearsForSelectInput" [value]="year">
                 {{year}}
             </mat-option>
         </mat-select>
-
-        <button mat-icon-button matTooltip="Primary" (click)="onSubmit.emit()">
-            <mat-icon>send</mat-icon>
-        </button>
-
     </mat-form-field>
 </form>

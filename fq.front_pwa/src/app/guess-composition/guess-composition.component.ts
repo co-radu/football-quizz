@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
 import { Game } from '../models/game/game';
 import { Player } from '../models/player/player';
@@ -9,9 +9,6 @@ import { Player } from '../models/player/player';
   styleUrls: ['./guess-composition.component.scss']
 })
 export class GuessCompositionComponent {
-
-  @Output('onSubmit')
-  public onSubmit: EventEmitter<any> = new EventEmitter();
 
   public forwards: FormArray = new FormArray([
     new FormControl(),

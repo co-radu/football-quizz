@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { FormControl, Validators } from '@angular/forms';
 import { Game } from '../models/game/game';
@@ -9,9 +9,6 @@ import { Game } from '../models/game/game';
     styleUrls: ['./guess-player.component.scss']
 })
 export class GuessPlayerComponent {
-
-    @Output("onSubmit")
-    public onSubmit: EventEmitter<any> = new EventEmitter();
 
     public responseInput: FormControl = new FormControl('', Validators.required);
 

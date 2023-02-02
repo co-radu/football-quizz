@@ -6,8 +6,8 @@ import { ResultsComponent } from '../bottom-sheets/results/results.component';
 import { GuessCompositionComponent } from '../guess-composition/guess-composition.component';
 import { GuessJerseyComponent } from '../guess-jersey/guess-jersey.component';
 import { GuessPlayerComponent } from '../guess-player/guess-player.component';
-import { GameType } from '../models/game-type/game-type';
 import { Game } from '../models/game/game';
+import { PartyService } from '../services/party/party.service';
 
 @Component({
     selector: 'app-games-display',
@@ -27,24 +27,18 @@ export class GamesDisplayComponent {
     @ViewChild('guessComposition')
     private guessCompositionComponent!: GuessCompositionComponent;
 
-    private bottomSheetRef = {} as MatBottomSheetRef<ResultsComponent>;
-
-    private gameTypeList: GameType[] = (<GameType[]>JSON.parse(localStorage['game_type_list']));
-    public currentGameTypeId: number = +(<string>this.route.snapshot.paramMap.get('gameTypeId'));
-    private currentGameType: GameType = (<GameType>this.gameTypeList.find((gameType: GameType) => gameType.id === this.currentGameTypeId));
-
-    public numberGamesInParty: number = 2;
-    public gamesForParty: Game[] = this.randomSelectedGames();
-
-    private gameIterator: IterableIterator<Game> = this.gamesForParty.values();
-    public currentGame: Game = this.gameIterator.next().value;
-    public currentGameToString: string = JSON.stringify(this.currentGame);
-    public gameIndex: number = this.gamesForParty.indexOf(this.currentGame);
+    private routeParam: number = +<string>this.route.snapshot.paramMap.get('gameTypeId');
+    public gamesForParty: Game[];
+    public currentGame: Game;
+    public gameIndex: number = 0;
+    public currentGameTypeId: number;
 
     private interval: any;
     public timeLeft: number = 50;
     public buttonIsVisible: boolean = true;
 
+    private bottomSheetRef = {} as MatBottomSheetRef<ResultsComponent>;
+    public numberGamesInParty: number = 2;
     public responseInput: FormControl = new FormControl('', Validators.required);
     public responseIsValid: boolean = false;
     public successCounter: number = 0;
@@ -52,22 +46,13 @@ export class GamesDisplayComponent {
     constructor(
         private route: ActivatedRoute,
         private bottomSheet: MatBottomSheet,
-        private router: Router
+        private router: Router,
+        private partyService: PartyService
     ) {
+        this.gamesForParty = this.partyService.gamesForParty(this.routeParam);
+        this.currentGame = this.gamesForParty[this.gameIndex];
+        this.currentGameTypeId = this.currentGame.gameType.id;
         // this.startTimer();
-    }
-
-    randomSelectedGames(): Game[] {
-        const gamesArray: Game[] = [];
-        let gameRandom: Game = this.currentGameType.games[Math.floor(Math.random() * this.currentGameType.games.length)];
-        do {
-            if (gamesArray.includes(gameRandom)) {
-                gameRandom = this.currentGameType.games[Math.floor(Math.random() * this.currentGameType.games.length)];
-            } else {
-                gamesArray.push(gameRandom);
-            }
-        } while (gamesArray.length < this.numberGamesInParty);
-        return gamesArray;
     }
 
     startTimer(): void {
@@ -99,8 +84,8 @@ export class GamesDisplayComponent {
 
     nextGame(): void {
         if (this.gameIndex < (this.gamesForParty.length - 1)) {
-            this.currentGame = this.gameIterator.next().value;
             this.gameIndex++;
+            this.currentGame = this.gamesForParty[this.gameIndex];
             this.timeLeft = 5;
         }
     }

@@ -15,14 +15,9 @@ export class HomeComponent {
 
   private gamesList: Game[] = localStorage['game_list'] ? JSON.parse(localStorage['game_list']) : null;
 
-
   constructor(private router: Router) { }
 
-  fetchGames(index: number): void {
-    this.router.navigate(['/games_display', { gameTypeId: this.gameTypeList[index].id }]);
+  redirectToGameDisplay(index?: number): void {
+    this.router.navigate(['/games_display', { gameTypeId: index ? this.gameTypeList[index].id : undefined }]);
   }
-
-  // quickGame() {
-  //   this.router.navigate(['/games_display', { gameTypeId: 0 }]);
-  // }
 }

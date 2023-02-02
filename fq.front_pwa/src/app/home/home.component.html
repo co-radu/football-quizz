@@ -3,9 +3,9 @@
 		<p class="logoContainer__logo">app logo</p>
 	</div>
 	<nav class="buttonList">
-		<button mat-raised-button color="primary" class="buttons" >partie rapide</button>
+		<button mat-raised-button color="primary" class="buttons" (click)="redirectToGameDisplay()">partie rapide</button>
 		<div class="buttonList__gameType" *ngFor="let gameTypeLabel of gameTypeLabels; let i = index">
-			<button mat-raised-button color="accent" class="buttons" (click)="fetchGames(i)">{{gameTypeLabel}}</button>
+			<button mat-raised-button color="accent" class="buttons" (click)="redirectToGameDisplay(i)">{{gameTypeLabel}}</button>
 		</div>
 	</nav>
 </div>

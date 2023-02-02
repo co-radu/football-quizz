@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { GameType } from 'src/app/models/game-type/game-type';
 import { Game } from 'src/app/models/game/game';
 
 @Injectable({
@@ -9,17 +8,17 @@ export class PartyService {
 
   constructor() { }
 
-  private gameTypeList: GameType[] = <GameType[]>JSON.parse(localStorage['game_type_list']);
   private gamesList: Game[] = <Game[]>JSON.parse(localStorage['game_list']);
 
   gamesForParty(gameTypeId?: number): Game[] {
     const gamesForParty: Game[] = [];
-    let games: Game[] = [];
+    let games: Game[] = this.gamesList;
+    let numberGamesInParty: number = 2;
     if (gameTypeId) {
-      const gameWithGameType: Game = <Game>this.gamesList.find((game: Game) => game.gameType.id === gameTypeId);
-      games.push(gameWithGameType);
-    } else {
-      games = this.gamesList;
+      games = games.filter((game: Game) => game.gameType.id === gameTypeId);
+      if (gameTypeId === 3) {
+        numberGamesInParty = 1;
+      }
     }
     let gameRandom: Game = games[Math.floor(Math.random() * games.length)];
     do {
@@ -28,7 +27,7 @@ export class PartyService {
       } else {
         gamesForParty.push(gameRandom);
       }
-    } while (gamesForParty.length < 1);
+    } while (gamesForParty.length < numberGamesInParty);
     return gamesForParty;
   }
 }

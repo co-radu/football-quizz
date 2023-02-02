@@ -32,14 +32,13 @@ export class GamesDisplayComponent {
     public currentGame: Game;
     public gameIndex: number = 0;
     public currentGameTypeId: number;
+    public numberGamesInParty: number;
 
     private interval: any;
     public timeLeft: number = 50;
     public buttonIsVisible: boolean = true;
 
     private bottomSheetRef = {} as MatBottomSheetRef<ResultsComponent>;
-    public numberGamesInParty: number = 2;
-    public responseInput: FormControl = new FormControl('', Validators.required);
     public responseIsValid: boolean = false;
     public successCounter: number = 0;
 
@@ -52,6 +51,7 @@ export class GamesDisplayComponent {
         this.gamesForParty = this.partyService.gamesForParty(this.routeParam);
         this.currentGame = this.gamesForParty[this.gameIndex];
         this.currentGameTypeId = this.currentGame.gameType.id;
+        this.numberGamesInParty = this.gamesForParty.length;
         // this.startTimer();
     }
 
@@ -116,7 +116,6 @@ export class GamesDisplayComponent {
                     this.redirectToHome();
                 }
                 this.buttonIsVisible = true;
-                this.responseInput.reset();
             }
         );
     }

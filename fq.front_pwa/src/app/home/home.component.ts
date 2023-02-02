@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { GameType } from '../models/game-type/game-type';
-import { Game } from '../models/game/game';
 
 @Component({
   selector: 'app-home',
@@ -10,14 +9,13 @@ import { Game } from '../models/game/game';
 })
 export class HomeComponent {
 
-  private gameTypeList: GameType[] = localStorage['game_type_list'] ? JSON.parse(localStorage['game_type_list']) : null;
+  private gameTypeList: GameType[] = <GameType[]>JSON.parse(localStorage['game_type_list']);
   public gameTypeLabels: string[] = this.gameTypeList.map((gameType: GameType) => gameType.label);
 
-  private gamesList: Game[] = localStorage['game_list'] ? JSON.parse(localStorage['game_list']) : null;
 
   constructor(private router: Router) { }
 
   redirectToGameDisplay(index?: number): void {
-    this.router.navigate(['/games_display', { gameTypeId: index ? this.gameTypeList[index].id : undefined }]);
+    this.router.navigate(['/games_display', { gameTypeId: index || index === 0 ? this.gameTypeList[index].id : undefined }]);
   }
 }

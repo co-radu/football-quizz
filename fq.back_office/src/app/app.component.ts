@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'fq.back_office';
+  public buttonsTitles: string[] = ['Gametype', 'Player', 'Jersey', 'Composition'];
+
+  constructor(private router: Router) {}
+
+  redirectTo(index: number): void {
+    this.router.navigate([this.buttonsTitles[index].toLowerCase()]);
+  }
 }

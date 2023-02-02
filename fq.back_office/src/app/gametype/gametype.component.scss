@@ -1,6 +1,16 @@
+.addButton {
+    align-self: flex-end;
+}
+
+.formAndTableContainer {
+    display: flex;
+    flex-direction: column;
+}
+
 .gameTypeTable {
     min-width: 500px;
     width: 80vw;
     max-height: 60vh;
     overflow: auto;
+    align-self: center;
 }

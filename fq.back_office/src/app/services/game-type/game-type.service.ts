@@ -15,4 +15,12 @@ export class GameTypeService {
   getGameTypeList(): Observable<GameType[]> {
     return this.httpClient.get<GameType[]>(`${this.apiUrl}/game_types`)
   }
+
+  createGameType(newGameType: GameType): Observable<GameType> {
+    return this.httpClient.post<GameType>(`${this.apiUrl}/game_types`, newGameType)
+  }
+
+  deleteGameType(id: number): Observable<GameType> {
+    return this.httpClient.delete<GameType>(`${this.apiUrl}/game_types/${id}`);
+  }
 }

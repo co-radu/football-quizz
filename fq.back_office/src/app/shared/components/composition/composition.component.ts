@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Composition } from '../models/composition/composition';
-import { CompositionService } from '../services/composition/composition.service';
+import { Composition } from '../../../models/composition/composition';
+import { CompositionService } from '../../../services/composition/composition.service';
 
 @Component({
   selector: 'app-composition',

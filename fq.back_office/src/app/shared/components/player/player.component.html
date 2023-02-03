@@ -1,24 +1,41 @@
-<div class="display">
+<!-- <div class="display">
     <div class="container">
-        <!-- <button class="addButton" mat-icon-button color="primary"
-            (click)="!gameFormIsVisible ? gameFormIsVisible = true : gameFormIsVisible = false">
-            <mat-icon>addCircle</mat-icon>
+        <button *ngIf="!createFormIsVisible && !editFormIsVisible" class="addButton" mat-raised-button color="primary"
+            (click)="createFormIsVisible = true">
+            create
         </button>
-        <div *ngIf="gameFormIsVisible">
-            <form [formGroup]="gameForm">
+        <div *ngIf="createFormIsVisible || editFormIsVisible">
+            <form [formGroup]="gameTypeForm" class="createAndEditForm">
+                <h2 *ngIf="editFormIsVisible">
+                    Game Type ID: #{{gameTypeToModify.id}}
+                </h2>
                 <mat-form-field>
                     <mat-label>Label</mat-label>
-                    <input matInput type="text" formControlName="label">
+                    <input matInput type="text" formControlName="label" *ngIf="createFormIsVisible" required
+                        minlength="3">
+                    <input matInput type="text" formControlName="label" *ngIf="editFormIsVisible" required
+                        minlength="3">
                 </mat-form-field>
                 <mat-form-field>
                     <mat-label>Timer</mat-label>
-                    <input matInput type="number" formControlName="timer">
+                    <input matInput type="number" formControlName="timer" *ngIf="createFormIsVisible" required>
+                    <input matInput type="number" formControlName="timer" *ngIf="editFormIsVisible" required>
                 </mat-form-field>
-                <button mat-raised-button color="primary" (click)="addgame()">
-                    Valider
-                </button>
             </form>
-        </div> -->
+            <div class="containerButtons">
+                <button mat-raised-button class="buttons" color="warn" (click)="closeForms()">
+                    abandon
+                </button>
+                <button mat-raised-button class="buttons" color="primary" (click)="addGameType()"
+                    *ngIf="createFormIsVisible">
+                    create
+                </button>
+                <button mat-raised-button class="buttons" color="primary" (click)="editGameType()"
+                    *ngIf="editFormIsVisible">
+                    edit
+                </button>
+            </div>
+        </div>
         <table mat-table [dataSource]="playerList" class="table">
 
             <ng-container matColumnDef="id">
@@ -52,10 +69,10 @@
                         </mat-icon>
                     </button>
                 </td>
-            </ng-container> -->
+            </ng-container> 
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
     </div>
-</div>
+</div> -->

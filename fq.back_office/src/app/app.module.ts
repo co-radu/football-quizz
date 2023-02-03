@@ -12,11 +12,13 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { GametypeComponent } from './gametype/gametype.component';
-import { PlayerComponent } from './player/player.component';
-import { JerseyComponent } from './jersey/jersey.component';
-import { CompositionComponent } from './composition/composition.component';
+
+import { CompositionComponent } from './shared/components/composition/composition.component';
 import { GamesComponent } from './games/games.component';
+import { GametypeComponent } from './shared/components/gametype/gametype.component';
+import { PlayerComponent } from './shared/components/player/player.component';
+import { JerseyComponent } from './shared/components/jersey/jersey.component';
+import { EntityDisplayComponent } from './entity-display/entity-display.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { GamesComponent } from './games/games.component';
     PlayerComponent,
     JerseyComponent,
     CompositionComponent,
-    GamesComponent
+    GamesComponent,
+    EntityDisplayComponent
   ],
   imports: [
     BrowserModule,

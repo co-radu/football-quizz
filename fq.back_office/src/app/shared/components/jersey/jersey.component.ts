@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { Jersey } from '../models/jersey/jersey';
-import { JerseyService } from '../services/jersey/jersey.service';
+import { Jersey } from 'src/app/models/jersey/jersey';
+import { JerseyService } from 'src/app/services/jersey/jersey.service';
+
 
 @Component({
   selector: 'app-jersey',

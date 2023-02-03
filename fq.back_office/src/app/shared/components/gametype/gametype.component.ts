@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { GameType } from '../models/game-type/game-type';
-import { GameTypeService } from '../services/game-type/game-type.service';
+import { GameType } from 'src/app/models/game-type/game-type';
+import { GameTypeService } from 'src/app/services/game-type/game-type.service';
 
 @Component({
   selector: 'app-gametype',
@@ -10,16 +10,36 @@ import { GameTypeService } from '../services/game-type/game-type.service';
 })
 export class GametypeComponent {
 
-  public gameTypeList: GameType[] = [];
+  public entityList: any[] = [];
   public displayedColumns: string[] = ['id', 'label', 'timer', 'edit', 'delete'];
-  public gameTypeToModify!: GameType;
+  public entityToModify!: any;
+  public createFormIsVisible: boolean = false;
+  public editFormIsVisible: boolean = false;
 
   public gameTypeForm: FormGroup = new FormGroup({
     label: new FormControl(),
     timer: new FormControl()
   });
-  public createFormIsVisible: boolean = false;
-  public editFormIsVisible: boolean = false;
+
+  public playerForm: FormGroup = new FormGroup({
+    firstName: new FormControl(),
+    lastName: new FormControl(),
+    acceptableAnswers: new FormControl(),
+    pictureUrl: new FormControl()
+  });
+
+  public jerseyForm: FormGroup = new FormGroup({
+    team: new FormControl(),
+    season: new FormControl(),
+    pictureUrl: new FormControl()
+  });
+
+  public compositionForm: FormGroup = new FormGroup({
+    label: new FormControl(),
+    teamList: new FormControl(),
+    pictureUrl: new FormControl(),
+    playerList: new FormControl()
+  });
 
   constructor(private gameTypeService: GameTypeService) {
     this.getGameTypeList();
@@ -28,7 +48,7 @@ export class GametypeComponent {
   getGameTypeList(): void {
     this.gameTypeService.getGameTypeList().subscribe(
       (newGameTypeList: GameType[]) => {
-        this.gameTypeList = newGameTypeList;
+        this.entityList = newGameTypeList;
       }
     );
   }
@@ -46,9 +66,9 @@ export class GametypeComponent {
   }
 
   openEditForm(gameTypeId: number): void {
-    this.gameTypeToModify = <GameType>this.gameTypeList.find((gameType: GameType) => gameType.id === gameTypeId);
-    this.gameTypeForm.controls['label'].setValue(this.gameTypeToModify.label);
-    this.gameTypeForm.controls['timer'].setValue(this.gameTypeToModify.timer);
+    this.entityToModify = <GameType>this.entityList.find((gameType: GameType) => gameType.id === gameTypeId);
+    this.gameTypeForm.controls['label'].setValue(this.entityToModify.label);
+    this.gameTypeForm.controls['timer'].setValue(this.entityToModify.timer);
     this.editFormIsVisible = true;
   }
 
@@ -60,9 +80,9 @@ export class GametypeComponent {
 
   editGameType(): void {
     if (this.gameTypeForm.valid) {
-      this.gameTypeToModify.label = this.gameTypeForm.controls['label'].value;
-      this.gameTypeToModify.timer = this.gameTypeForm.controls['timer'].value;
-      this.gameTypeService.editGameType(this.gameTypeToModify).subscribe(() => {
+      this.entityToModify.label = this.gameTypeForm.controls['label'].value;
+      this.entityToModify.timer = this.gameTypeForm.controls['timer'].value;
+      this.gameTypeService.editGameType(this.entityToModify).subscribe(() => {
         this.getGameTypeList();
         this.closeForms();
       })
@@ -72,8 +92,8 @@ export class GametypeComponent {
   }
 
   removeGameType(gameTypeId: number): void {
-    this.gameTypeToModify = <GameType>this.gameTypeList.find((gameType: GameType) => gameType.id === gameTypeId);
-    if (this.gameTypeToModify.games?.length === 0) {
+    this.entityToModify = <GameType>this.entityList.find((gameType: GameType) => gameType.id === gameTypeId);
+    if (this.entityToModify.games?.length === 0) {
       alert(`You removed  game type id #${gameTypeId} !`);
       this.gameTypeService.removeGameType(gameTypeId).subscribe(() => this.getGameTypeList());
     } else {

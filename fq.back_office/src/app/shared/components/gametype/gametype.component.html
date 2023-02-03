@@ -7,7 +7,7 @@
         <div *ngIf="createFormIsVisible || editFormIsVisible">
             <form [formGroup]="gameTypeForm" class="createAndEditForm">
                 <h2 *ngIf="editFormIsVisible">
-                    Game Type ID: #{{gameTypeToModify.id}}
+                    Game Type ID: #{{entityToModify.id}}
                 </h2>
                 <mat-form-field>
                     <mat-label>Label</mat-label>
@@ -36,7 +36,7 @@
                 </button>
             </div>
         </div>
-        <table *ngIf="!createFormIsVisible && !editFormIsVisible" mat-table [dataSource]="gameTypeList" class="table">
+        <table *ngIf="!createFormIsVisible && !editFormIsVisible" mat-table [dataSource]="entityList" class="table">
 
             <ng-container matColumnDef="id">
                 <th mat-header-cell *matHeaderCellDef> ID </th>

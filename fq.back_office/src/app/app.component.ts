@@ -7,11 +7,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  public buttonsTitles: string[] = ['Gametype', 'Player', 'Jersey', 'Composition'];
+  public buttonsTitles: string[] = ['Games', 'Gametype', 'Player', 'Jersey', 'Composition'];
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
 
   redirectTo(index: number): void {
-    this.router.navigate([this.buttonsTitles[index].toLowerCase()]);
+    if (index === 0) {
+      this.router.navigate(['']);
+    } else {
+      this.router.navigate([this.buttonsTitles[index].toLowerCase()]);
+    }
   }
 }

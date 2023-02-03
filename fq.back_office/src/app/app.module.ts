@@ -13,11 +13,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GametypeComponent } from './gametype/gametype.component';
+import { PlayerComponent } from './player/player.component';
+import { JerseyComponent } from './jersey/jersey.component';
+import { CompositionComponent } from './composition/composition.component';
+import { GamesComponent } from './games/games.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    GametypeComponent
+    GametypeComponent,
+    PlayerComponent,
+    JerseyComponent,
+    CompositionComponent,
+    GamesComponent
   ],
   imports: [
     BrowserModule,

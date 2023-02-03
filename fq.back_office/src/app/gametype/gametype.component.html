@@ -1,11 +1,11 @@
 <div class="display">
     <div class="container">
-        <button class="addButton" mat-icon-button color="primary"
-            (click)="!gameTypeFormIsVisible ? gameTypeFormIsVisible = true : gameTypeFormIsVisible = false">
-            <mat-icon>addCircle</mat-icon>
+        <button *ngIf="!gameTypeFormIsVisible" class="addButton" mat-raised-button color="primary"
+            (click)="gameTypeFormIsVisible = true">
+            create
         </button>
         <div *ngIf="gameTypeFormIsVisible">
-            <form [formGroup]="gameTypeForm">
+            <form [formGroup]="gameTypeForm" class="createForm">
                 <mat-form-field>
                     <mat-label>Label</mat-label>
                     <input matInput type="text" formControlName="label">
@@ -14,12 +14,17 @@
                     <mat-label>Timer</mat-label>
                     <input matInput type="number" formControlName="timer">
                 </mat-form-field>
-                <button mat-raised-button color="primary" (click)="addGameType()">
-                    Valider
-                </button>
             </form>
+            <div class="containerButtons">
+                <button mat-raised-button class="buttons" color="warn" (click)="gameTypeFormIsVisible = false">
+                    Abandon
+                </button>
+                <button mat-raised-button class="buttons" color="primary" (click)="addGameType()">
+                    Create
+                </button>
+            </div>
         </div>
-        <table mat-table [dataSource]="gameTypeList" class="table">
+        <table *ngIf="!gameTypeFormIsVisible" mat-table [dataSource]="gameTypeList" class="table">
 
             <ng-container matColumnDef="id">
                 <th mat-header-cell *matHeaderCellDef> ID </th>

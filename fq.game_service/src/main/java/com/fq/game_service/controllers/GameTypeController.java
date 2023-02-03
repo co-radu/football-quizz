@@ -68,7 +68,7 @@ public class GameTypeController {
         if (gameTypeRepo.findById(id).isPresent()) {
             gameTypeRepo.deleteById(id);
             return ResponseEntity
-                    .ok(String.format("%s id: %s has been removed.",exceptionType, id));
+                    .ok(String.format("%s id: %s has been removed.", id));
         }
         return ResponseEntity
                 .badRequest()

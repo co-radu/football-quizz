@@ -33,7 +33,10 @@ export class GametypeComponent {
 
   addGameType(): void {
     const newGameType: GameType = new GameType(this.gameTypeForm.value.timer, this.gameTypeForm.value.label);
-    this.gameTypeService.createGameType(newGameType).subscribe(() => this.getGameTypeList());
+    this.gameTypeService.createGameType(newGameType).subscribe(() => {
+      this.getGameTypeList();
+      this.gameTypeFormIsVisible = false;
+    });
   }
 
   deleteGameType(id: number): void {

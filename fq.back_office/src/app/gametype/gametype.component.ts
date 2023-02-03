@@ -71,7 +71,13 @@ export class GametypeComponent {
     }
   }
 
-  deleteGameType(gameTypeId: number): void {
-    this.gameTypeService.deleteGameType(gameTypeId).subscribe(() => this.getGameTypeList());
+  removeGameType(gameTypeId: number): void {
+    this.gameTypeToModify = <GameType>this.gameTypeList.find((gameType: GameType) => gameType.id === gameTypeId);
+    if (this.gameTypeToModify.games?.length === 0) {
+      alert(`You removed  game type id #${gameTypeId} !`);
+      this.gameTypeService.removeGameType(gameTypeId).subscribe(() => this.getGameTypeList());
+    } else {
+      alert(`You archived game type id #${gameTypeId} !`);
+    }
   }
 }

@@ -23,4 +23,8 @@ export class GameTypeService {
   deleteGameType(id: number): Observable<GameType> {
     return this.httpClient.delete<GameType>(`${this.apiUrl}/game_types/${id}`);
   }
+
+  editGameType(gameTypeToModify: GameType): Observable<GameType> {
+    return this.httpClient.put<GameType>(`${this.apiUrl}/game_types/${gameTypeToModify.id}`, gameTypeToModify);
+  }
 }

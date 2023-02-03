@@ -1,30 +1,42 @@
 <div class="display">
     <div class="container">
-        <button *ngIf="!gameTypeFormIsVisible" class="addButton" mat-raised-button color="primary"
-            (click)="gameTypeFormIsVisible = true">
+        <button *ngIf="!createFormIsVisible && !editFormIsVisible" class="addButton" mat-raised-button color="primary"
+            (click)="createFormIsVisible = true">
             create
         </button>
-        <div *ngIf="gameTypeFormIsVisible">
-            <form [formGroup]="gameTypeForm" class="createForm">
+        <div *ngIf="createFormIsVisible || editFormIsVisible">
+            <form [formGroup]="gameTypeForm" class="createAndEditForm">
+                <h2 *ngIf="editFormIsVisible">
+                    Game Type ID: #{{gameTypeToModify.id}}
+                </h2>
                 <mat-form-field>
                     <mat-label>Label</mat-label>
-                    <input matInput type="text" formControlName="label">
+                    <input matInput type="text" formControlName="label" *ngIf="createFormIsVisible" required
+                        minlength="3">
+                    <input matInput type="text" formControlName="label" *ngIf="editFormIsVisible" required
+                        minlength="3">
                 </mat-form-field>
                 <mat-form-field>
                     <mat-label>Timer</mat-label>
-                    <input matInput type="number" formControlName="timer">
+                    <input matInput type="number" formControlName="timer" *ngIf="createFormIsVisible" required>
+                    <input matInput type="number" formControlName="timer" *ngIf="editFormIsVisible" required>
                 </mat-form-field>
             </form>
             <div class="containerButtons">
-                <button mat-raised-button class="buttons" color="warn" (click)="gameTypeFormIsVisible = false">
-                    Abandon
+                <button mat-raised-button class="buttons" color="warn" (click)="closeForms()">
+                    abandon
                 </button>
-                <button mat-raised-button class="buttons" color="primary" (click)="addGameType()">
-                    Create
+                <button mat-raised-button class="buttons" color="primary" (click)="addGameType()"
+                    *ngIf="createFormIsVisible">
+                    create
+                </button>
+                <button mat-raised-button class="buttons" color="primary" (click)="editGameType()"
+                    *ngIf="editFormIsVisible">
+                    edit
                 </button>
             </div>
         </div>
-        <table *ngIf="!gameTypeFormIsVisible" mat-table [dataSource]="gameTypeList" class="table">
+        <table *ngIf="!createFormIsVisible && !editFormIsVisible" mat-table [dataSource]="gameTypeList" class="table">
 
             <ng-container matColumnDef="id">
                 <th mat-header-cell *matHeaderCellDef> ID </th>
@@ -43,10 +55,21 @@
                 <td mat-cell *matCellDef="let gameType"> {{gameType.timer}} </td>
             </ng-container>
 
-            <ng-container matColumnDef="delete">
-                <th mat-header-cell *matHeaderCellDef></th>
+            <ng-container matColumnDef="edit">
+                <th mat-header-cell *matHeaderCellDef>Edit</th>
                 <td mat-cell *matCellDef="let gameType">
-                    <button mat-icon-button matTooltip="Warn" (click)="deleteGameType(gameType.id)">
+                    <button mat-icon-button color="primary" (click)="openEditForm(gameType.id)">
+                        <mat-icon>
+                            edit
+                        </mat-icon>
+                    </button>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="delete">
+                <th mat-header-cell *matHeaderCellDef>Delete</th>
+                <td mat-cell *matCellDef="let gameType">
+                    <button mat-icon-button color="warn" (click)="deleteGameType(gameType.id)">
                         <mat-icon>
                             delete
                         </mat-icon>

@@ -27,10 +27,14 @@ body {
             text-transform: uppercase;
         }
 
-        .createForm {
+        .createAndEditForm {
             display: flex;
             flex-direction: column;
             margin-top: 76px;
+
+            h2 {
+                text-align: center;
+            }
         }
 
         .containerButtons {
@@ -48,6 +52,12 @@ body {
             max-height: 60vh;
             overflow: auto;
             align-self: center;
+
+            .mat-column-edit,
+            .mat-column-delete,
+            .mat-column-id {
+                text-align: center;
+            }
         }
     }
 }

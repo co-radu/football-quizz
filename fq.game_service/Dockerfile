@@ -1,11 +1,7 @@
-FROM eclipse-temurin:17-jdk-alpine
+FROM openjdk:19
 
-VOLUME /tmp
+ADD build/libs/*.jar game_service.jar
 
-ARG DEPENDENCY=target/dependency
+EXPOSE 8080
 
-COPY ${DEPENDENCY}/BOOT-INF/lib /app/lib
-COPY ${DEPENDENCY}/META-INF /app/META-INF
-COPY ${DEPENDENCY}/BOOT-INF/classes /app
-
-ENTRYPOINT ["java","-cp","app:app/lib/*","fq.game_service.Application"]
+ENTRYPOINT ["java","-jar", "game_service.jar"]

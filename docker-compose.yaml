@@ -50,7 +50,7 @@ services:
 
   api:
     container_name: fq.api
-    image: fq.game_service
+    build: ./fq.game_service
     restart: always
     ports:
       - 8080:8080

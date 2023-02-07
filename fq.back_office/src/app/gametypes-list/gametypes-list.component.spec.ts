@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EntityDisplayComponent } from './entity-display.component';
+import { GametypesListComponent } from './gametypes-list.component';
 
-describe('EntityDisplayComponent', () => {
-  let component: EntityDisplayComponent;
-  let fixture: ComponentFixture<EntityDisplayComponent>;
+describe('GametypesListComponent', () => {
+  let component: GametypesListComponent;
+  let fixture: ComponentFixture<GametypesListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EntityDisplayComponent ]
+      declarations: [ GametypesListComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(EntityDisplayComponent);
+    fixture = TestBed.createComponent(GametypesListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

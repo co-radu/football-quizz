@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { GameType } from 'src/app/models/game-type/game-type';
-import { GameTypeService } from 'src/app/services/game-type/game-type.service';
+import { GameType } from 'src/app/shared/models/game-type/game-type';
+import { GameTypeService } from 'src/app/shared/services/game-type/game-type.service';
 
 @Component({
-  selector: 'app-gametype',
-  templateUrl: './gametype.component.html',
-  styleUrls: ['./gametype.component.scss']
+  selector: 'app-gametypes-list',
+  templateUrl: './gametypes-list.component.html',
+  styleUrls: ['./gametypes-list.component.scss']
 })
-export class GametypeComponent {
+export class GametypesListComponent {
 
   public entityList: any[] = [];
   public displayedColumns: string[] = ['id', 'label', 'timer', 'edit', 'delete'];

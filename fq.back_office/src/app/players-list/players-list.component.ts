@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
 
 import { FormControl, FormGroup } from '@angular/forms';
-import { Player } from 'src/app/models/player/player';
-import { PlayerService } from 'src/app/services/player/player.service';
+import { Player } from 'src/app/shared/models/player/player';
+import { PlayerService } from 'src/app/shared/services/player/player.service';
 
 @Component({
-  selector: 'app-player',
-  templateUrl: './player.component.html',
-  styleUrls: ['./player.component.scss']
+  selector: 'app-players-list',
+  templateUrl: './players-list.component.html',
+  styleUrls: ['./players-list.component.scss']
 })
-export class PlayerComponent {
+export class PlayersListComponent {
 
   public playerList: Player[] = [];
   public displayedColumns: string[] = ['id', 'lastName', 'firstName'];

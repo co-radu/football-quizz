@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
 export class NavbarComponent {
 
   public links: string[] = ['games', 'gametypes', 'players', 'jerseys', 'compositions'];
-
+  public frontUrl: string = 'http://localhost:4200';
 }

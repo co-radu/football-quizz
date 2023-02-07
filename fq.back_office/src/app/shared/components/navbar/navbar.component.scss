@@ -1,41 +1,55 @@
-@import url('https://fonts.googleapis.com/css2?family=Play&display=swap');
+@import "../../styles/variables.scss";
+@import "../../styles/dividers.scss";
 
-$navbar-width: 150px;
-$navbar-padding: 8px;
+a {
+    text-transform: capitalize;
+    text-decoration: none;
+}
 
 .navbar {
     height: 100vh;
     width: $navbar-width;
     position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-    h3 {
-        text-transform: capitalize;
-        color: rgba(0, 0, 0, 0.4);
-        margin-bottom: 0;
-    }
+    .headers {
+        width: fit-content;
 
-    p {
-        color: rgba(0, 0, 0, 0.4);
-        margin-top: 0;
-        font-size: 0.8rem;
+        h3 {
+            margin-bottom: 0;
+        }
+
+        .appName {
+            color: rgba(0, 0, 0, 0.35);
+            margin-bottom: 0;
+            text-align: center;
+        }
+
+        .appVersion {
+            color: rgba(0, 0, 0, 0.35);
+            margin-top: 0;
+            font-size: 0.8rem;
+            text-align: end;
+        }
     }
 
     ul {
         padding: 0;
         margin: 0;
+        width: 100%;
 
         .list {
             list-style: none;
             display: flex;
-            padding-left: $navbar-padding;
+            padding-left: $navbar-padding-left;
 
             .link {
-                text-transform: capitalize;
-                text-decoration: none;
+
                 color: #111111;
                 width: 100%;
                 padding: 10px 0 10px 0;
-                font-family: 'Play', sans-serif;
             }
         }
 

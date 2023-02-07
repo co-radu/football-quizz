@@ -1,12 +1,13 @@
 <nav class="navbar">
-    <div>
+    <div class="headers">
         <h3>
-            football quizz
+            <a href="http://localhost:4200" target="_blank" class="appName">football quizz</a>
         </h3>
-        <p>
+        <p class="appVersion">
             v0.1
         </p>
     </div>
+    <hr class="divider">
     <ul>
         <li *ngFor="let link of links" class="list" routerLinkActive="active">
             <a class="link" routerLinkActive="active__link" [routerLink]="link">{{link}}</a>

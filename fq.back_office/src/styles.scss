@@ -1,4 +1,4 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=Play&display=swap');
 
 html,
 body {
@@ -7,57 +7,5 @@ body {
 
 body {
     margin: 0;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
-}
-
-.display {
-    min-height: calc(100vh - 64px);
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-
-    .container {
-        display: flex;
-        flex-direction: column;
-        width: 80vw;
-
-        .addButton {
-            align-self: flex-start;
-            margin: 20px 0 20px;
-            text-transform: uppercase;
-        }
-
-        .createAndEditForm {
-            display: flex;
-            flex-direction: column;
-            margin-top: 76px;
-
-            h2 {
-                text-align: center;
-            }
-        }
-
-        .containerButtons {
-            display: flex;
-            justify-content: space-between;
-
-            .buttons {
-                text-transform: uppercase;
-            }
-        }
-
-        .table {
-            min-width: 500px;
-            width: 100%;
-            max-height: 60vh;
-            overflow: auto;
-            align-self: center;
-
-            .mat-column-edit,
-            .mat-column-delete,
-            .mat-column-id {
-                text-align: center;
-            }
-        }
-    }
+    font-family: 'Play', sans-serif;
 }

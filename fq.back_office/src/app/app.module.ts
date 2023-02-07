@@ -19,6 +19,8 @@ import { GametypeComponent } from './shared/components/gametype/gametype.compone
 import { PlayerComponent } from './shared/components/player/player.component';
 import { JerseyComponent } from './shared/components/jersey/jersey.component';
 import { EntityDisplayComponent } from './entity-display/entity-display.component';
+import { DisplayDataTableComponent } from './shared/components/display-data-table/display-data-table.component';
+import { GamesFormComponent } from './shared/components/forms/games-form/games-form.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { EntityDisplayComponent } from './entity-display/entity-display.componen
     JerseyComponent,
     CompositionComponent,
     GamesComponent,
-    EntityDisplayComponent
+    EntityDisplayComponent,
+    DisplayDataTableComponent,
+    GamesFormComponent
   ],
   imports: [
     BrowserModule,

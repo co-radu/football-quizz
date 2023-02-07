@@ -11,7 +11,7 @@ export class EntityDisplayComponent {
   private entityType!: string;
 
   constructor(private activatedRoute: ActivatedRoute) {
-    this.activatedRoute.url.subscribe(url => this.entityType = url[0].path);
+    console.log(this.activatedRoute.snapshot.url[0].path)
   }
 
 }

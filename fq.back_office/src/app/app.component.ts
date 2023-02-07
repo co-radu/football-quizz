@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  public buttonsTitles: string[] = ['Games', 'Gametype', 'Player', 'Jersey', 'Composition'];
+  public buttonsTitles: string[] = ['games', 'gametype', 'player', 'jersey', 'composition'];
 
   constructor(private router: Router) { }
 

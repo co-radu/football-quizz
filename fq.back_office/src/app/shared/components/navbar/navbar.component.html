@@ -1,0 +1,16 @@
+<nav class="navbar">
+    <div>
+        <h3>
+            football quizz
+        </h3>
+        <p>
+            v0.1
+        </p>
+    </div>
+    <ul>
+        <li *ngFor="let link of links" class="list" routerLinkActive="active">
+            <a class="link" routerLinkActive="active__link" [routerLink]="link">{{link}}</a>
+        </li>
+    </ul>
+</nav>
+<router-outlet class="pagesBody"></router-outlet>

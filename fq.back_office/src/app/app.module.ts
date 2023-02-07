@@ -11,9 +11,11 @@ import { CompositionsListComponent } from './compositions-list/compositions-list
 import { GamesListComponent } from './games-list/games-list.component';
 import { GametypesListComponent } from './gametypes-list/gametypes-list.component';
 import { JerseysListComponent } from './jerseys-list/jerseys-list.component';
+import { LayoutComponent } from './layout/layout.component';
 import { PlayersListComponent } from './players-list/players-list.component';
 import { DisplayDataTableComponent } from './shared/components/display-data-table/display-data-table.component';
 import { GamesFormComponent } from './shared/components/forms/games-form/games-form.component';
+import { NavbarComponent } from './shared/components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { GamesFormComponent } from './shared/components/forms/games-form/games-f
     CompositionsListComponent,
     GamesListComponent,
     DisplayDataTableComponent,
-    GamesFormComponent
+    GamesFormComponent,
+    LayoutComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,

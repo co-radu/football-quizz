@@ -6,10 +6,15 @@ a {
     text-decoration: none;
 }
 
-.navbar {
-    height: 100vh;
+.topBar {
+    display: none;
+}
+
+.navBar {
+    min-height: 100vh;
     width: $navbar-width;
-    position: fixed;
+    position: absolute;
+    top: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -43,13 +48,12 @@ a {
         .list {
             list-style: none;
             display: flex;
-            padding-left: $navbar-padding-left;
 
             .link {
 
                 color: #111111;
                 width: 100%;
-                padding: 10px 0 10px 0;
+                padding: 10px 0 10px $navbar-padding-left;
             }
         }
 
@@ -58,10 +62,10 @@ a {
         }
 
         .active {
-            background-color: rgb(66, 143, 245, 0.2);
+            background-color: $navbar-ligth-blue;
 
             .active__link {
-                color: rgba(0, 0, 255, 0.45);
+                color: $navbar-dark-blue;
             }
         }
     }
@@ -69,4 +73,74 @@ a {
 
 .pagesBody {
     margin-left: $navbar-width;
+}
+
+@media screen and (max-width: 768px) {
+
+    .pagesBody {
+        margin-left: 0;
+        transition: $navbar-transition;
+    }
+
+    .shade {
+        display: none;
+        width: calc(100vw - $navbar-width);
+        min-height: calc(100vh - 56px);
+        background-color: rgba(0, 0, 0, 0.5);
+        position: absolute;
+        top: 56px;
+        left: $navbar-width;
+        overflow: hidden;
+    }
+
+    .topBar {
+        display: block;
+        background-color: $navbar-ligth-blue;
+
+        .burgerButton,
+        .closeButton {
+            display: inline-block;
+            margin: 10px;
+        }
+
+        .bar1,
+        .bar2,
+        .bar3 {
+            width: 32px;
+            height: 4px;
+            background-color: $navbar-dark-blue;
+            margin: 5px 0;
+            transition: $navbar-transition;
+
+        }
+
+        .closeButton {
+
+            .bar1 {
+                transform: translate(0, 9px) rotate(-45deg);
+            }
+
+            .bar2 {
+                opacity: 0;
+            }
+
+            .bar3 {
+                transform: translate(0, -9px) rotate(45deg);
+            }
+        }
+    }
+
+    .navBar {
+        min-height: calc(100vh - 56px);
+        left: -$navbar-width;
+        transition: $navbar-transition;
+        top: 56px;
+
+        ul {
+
+            .list:hover {
+                background-color: $navbar-ligth-blue;
+            }
+        }
+    }
 }

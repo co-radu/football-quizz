@@ -1,6 +1,5 @@
-<div>
-    <button>Games in Progress</button>
-    <button>Games in Progress</button>
+<div class="linkContainer">
+    <a class="link" [routerLink]="['create']">create game</a>
 </div>
-
+<router-outlet></router-outlet>
 <app-display-data-table *ngIf="data && data.length > 0" [data]="data"></app-display-data-table>

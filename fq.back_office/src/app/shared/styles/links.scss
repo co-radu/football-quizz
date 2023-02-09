@@ -1,0 +1,25 @@
+@import "./variables.scss";
+
+.linkContainer {
+    max-width: 200px;
+    width: fit-content;
+    display: flex;
+    background: $button-blue;
+    position: relative;
+    box-shadow: 1px 1px 3px #111111;
+
+    .link {
+        color: #111111;
+        padding: 10px 15px;
+        cursor: pointer;
+        text-transform: uppercase;
+    }
+}
+
+.linkContainer:hover {
+    background: $button-blue-hover;
+}
+
+.linkContainer:active {
+    top: 2px;
+}

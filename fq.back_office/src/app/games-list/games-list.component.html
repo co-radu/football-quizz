@@ -1,5 +1,5 @@
 <div class="linkContainer">
-    <a class="link" [routerLink]="['create']">create game</a>
+    <a class="link" [routerLink]="['./create']">create</a>
 </div>
 <router-outlet></router-outlet>
 <app-display-data-table *ngIf="data && data.length > 0" [data]="data"></app-display-data-table>

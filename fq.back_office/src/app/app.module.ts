@@ -13,8 +13,8 @@ import { GametypesListComponent } from './gametypes-list/gametypes-list.componen
 import { JerseysListComponent } from './jerseys-list/jerseys-list.component';
 import { LayoutComponent } from './layout/layout.component';
 import { PlayersListComponent } from './players-list/players-list.component';
+import { CreateEditFormComponent } from './shared/components/create-edit-form/create-edit-form.component';
 import { DisplayDataTableComponent } from './shared/components/display-data-table/display-data-table.component';
-import { GamesFormComponent } from './shared/components/forms/games-form/games-form.component';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 
 @NgModule({
@@ -26,7 +26,7 @@ import { NavbarComponent } from './shared/components/navbar/navbar.component';
     CompositionsListComponent,
     GamesListComponent,
     DisplayDataTableComponent,
-    GamesFormComponent,
+    CreateEditFormComponent,
     LayoutComponent,
     NavbarComponent,
   ],

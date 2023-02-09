@@ -1,11 +1,11 @@
 export class Player {
 
     constructor(
-        id: number,
         firstName: string,
         lastName: string,
         acceptableAnswers: string[],
-        pictureUrl: string
+        pictureUrl: string,
+        id?: number,
     ) {
         this.id = id;
         this.firstName = firstName;
@@ -14,7 +14,7 @@ export class Player {
         this.pictureUrl = pictureUrl;
     }
 
-    id: number;
+    id?: number;
     firstName: string;
     lastName: string;
     acceptableAnswers: string[];

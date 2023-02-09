@@ -9,7 +9,6 @@ import { Game } from 'src/app/shared/models/game/game';
 })
 export class DisplayDataTableComponent implements OnInit {
   @Input() data: Array<Game | GameType> = [];
-  @Input() link: string = '';
 
   public headers: string[] = [];
 

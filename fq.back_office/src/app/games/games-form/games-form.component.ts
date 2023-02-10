@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { GameType } from 'src/app/shared/models/game-type/game-type';
+import { Player } from 'src/app/shared/models/player/player';
 import { GameTypeService } from 'src/app/shared/services/game-type/game-type.service';
+import { PlayersService } from 'src/app/shared/services/players/players.service';
 
 @Component({
   selector: 'app-games-form',
@@ -25,15 +27,14 @@ export class GamesFormComponent {
   });
 
   public gameTypesList: GameType[] = [];
+  public playersList: Player[] = [];
 
   constructor(
     private gameTypeService: GameTypeService,
+    private playersService: PlayersService,
   ) {
-    this.gameTypeService.getGameTypeList().subscribe(
-      (gameTypesList: GameType[]) => {
-        this.gameTypesList = gameTypesList;
-      }
-    );
+    this.getGameTypesList();
+    this.getPlayersList();
   }
 
   get clues(): FormArray {
@@ -46,5 +47,21 @@ export class GamesFormComponent {
 
   onSubmit(): void {
     console.log(this.gameForm.get('gameType'))
+  }
+
+  getGameTypesList(): void {
+    this.gameTypeService.getGameTypeList().subscribe(
+      (gameTypesList: GameType[]) => {
+        this.gameTypesList = gameTypesList;
+      }
+    );
+  }
+
+  getPlayersList(): void {
+    this.playersService.getPlayersList().subscribe(
+      (playersList: Player[]) => {
+        this.playersList = playersList;
+      }
+    );
   }
 }

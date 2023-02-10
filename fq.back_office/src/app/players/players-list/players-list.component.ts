@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 import { FormControl, FormGroup } from '@angular/forms';
 import { Player } from 'src/app/shared/models/player/player';
-import { PlayerService } from 'src/app/shared/services/player/player.service';
+import { PlayersService } from 'src/app/shared/services/players/players.service';
 
 @Component({
   selector: 'app-players-list',
@@ -22,8 +22,8 @@ export class PlayersListComponent {
     pictureUrl: new FormControl()
   });
 
-  constructor(private playerService: PlayerService) {
-    this.playerService.getPlayerList().subscribe(((playerList: Player[]) => this.playerList = playerList));
+  constructor(private playersService: PlayersService) {
+    this.playersService.getPlayersList().subscribe(((playerList: Player[]) => this.playerList = playerList));
   }
 
 }

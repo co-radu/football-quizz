@@ -1,29 +1,41 @@
-<form [formGroup]="gameForm" (ngSubmit)="onSubmit()">
+<div class="container">
+    <div class="card">
+        <h2>create a game</h2>
+        <form [formGroup]="gameForm" (ngSubmit)="onSubmit()" class="gameForm">
+            <div class="formField">
+                <label for="gameGameType">Gametype <span class="requireToken">*</span></label>
+                <div class="inputContainer">
+                    <select formControlName="gameType" id="gameGameType" class="gameType" required>
+                        <option ngValue="">Select a game type</option>
+                        <option *ngFor="let gameType of gameTypesList" [ngValue]="gameType">{{gameType.label}}</option>
+                    </select>
+                    <app-form-alert *ngIf="gameType.invalid && (gameType.dirty || gameType.touched)"
+                        [control]="gameType" controlNameToDisplay="Game Type"></app-form-alert>
+                </div>
 
-    <label for="gameGameType">Gametype*</label>
-    <select formControlName="gameType" id="gameGameType" required>
-        <option ngValue="">Select a Game Type</option>
-        <option *ngFor="let gameType of gameTypesList" [ngValue]="gameType">{{gameType.label}}</option>
-    </select>
-    <app-form-alert *ngIf="gameType.invalid && (gameType.dirty || gameType.touched)" [control]="gameType"
-        controlNameToDisplay="Game Type"></app-form-alert>
+            </div>
 
-    <div formArrayName="clues" required>
-        <label for="gameClues">Clues List*</label>
-        <div *ngFor="let clue of clues.controls; index as i">
-            <input [formControlName]="i" placeholder="Clue" required (minlength)="minLengthRequired">
-            <app-form-alert *ngIf="clue.invalid && (clue.dirty || clue.touched)" [control]="clue"
-                controlNameToDisplay="Clue" [minLengthRequired]="minLengthRequired"></app-form-alert>
-        </div>
+            <div formArrayName="clues" class="formField">
+                <label for="gameClues">Clues List <span class="requireToken">*</span></label>
+                <div *ngFor="let clue of clues.controls; index as i" class="inputContainer">
+                    <input [formControlName]="i" placeholder="Clue" required (minlength)="minLengthRequired"
+                        class="clue">
+                    <app-form-alert *ngIf="clue.invalid && (clue.dirty || clue.touched)" [control]="clue"
+                        controlNameToDisplay="Clue" [minLengthRequired]="minLengthRequired"></app-form-alert>
+                </div>
+            </div>
+
+            <!--<label for="gamePlayer">Player</label>
+            <select formControlName="player" id="gamePlayer"></select>
+            <label for="gameJersey">Jersey</label>
+            <select formControlName="jersey" id="gameJersey"></select>
+            <label for="gameComposition">Composition</label>
+            <select formControlName="composition" id="gameComposition"></select> -->
+
+            <p class="require">* require</p>
+            <button class="submitButton" type="submit" [disabled]="gameForm.invalid">
+                submit
+            </button>
+        </form>
     </div>
-
-    <!--<label for="gamePlayer">Player</label>
-    <select formControlName="player" id="gamePlayer"></select>
-    <label for="gameJersey">Jersey</label>
-    <select formControlName="jersey" id="gameJersey"></select>
-    <label for="gameComposition">Composition</label>
-    <select formControlName="composition" id="gameComposition"></select> -->
-
-    <p>* Required</p>
-    <button type="submit" [disabled]="gameForm.invalid">Submit</button>
-</form>
+</div>

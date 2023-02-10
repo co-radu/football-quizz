@@ -6,7 +6,8 @@
     display: flex;
     background: $button-blue;
     position: relative;
-    box-shadow: 1px 1px 3px #111111;
+    box-shadow: $box-shadow;
+    border-radius: $border-radius;
 
     .link {
         color: #111111;

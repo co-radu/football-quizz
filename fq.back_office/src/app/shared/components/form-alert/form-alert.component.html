@@ -1,0 +1,9 @@
+<div class="alert">
+    <div *ngIf="control.errors?.['required']" class="warn">
+        <span class="warning">Warning!</span> {{controlNameToDisplay}} is required.
+    </div>
+    <div *ngIf="control.errors?.['minlength']" class="warn">
+        <span class="warning">Warning!</span> {{controlNameToDisplay}} must be at least {{minLengthRequired}} characters
+        long.
+    </div>
+</div>

@@ -40,6 +40,11 @@ export class GamesFormComponent {
     return this.gameForm.get('clues') as FormArray;
   }
 
+  get gameType(): FormControl {
+    return this.gameForm.get('gameType') as FormControl;
+  }
+
   onSubmit(): void {
+    console.log(this.gameForm.get('gameType'))
   }
 }

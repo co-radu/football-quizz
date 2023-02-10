@@ -1,0 +1,16 @@
+.alert {
+    background-color: #FFAA2C;
+    color: white;
+    width: 600px;
+    margin-top: 5px;
+
+    .warn {
+        padding: 10px 0 10px 15px;
+        font-family: arial;
+        font-size: 0.9rem;
+
+        .warning {
+            font-weight: 600;
+        }
+    }
+}

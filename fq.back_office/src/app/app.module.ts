@@ -21,6 +21,7 @@ import { PlayersListComponent } from './players/players-list/players-list.compon
 import { CreateEditFormComponent } from './shared/components/create-edit-form/create-edit-form.component';
 import { DisplayDataTableComponent } from './shared/components/display-data-table/display-data-table.component';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
+import { FormAlertComponent } from './shared/components/form-alert/form-alert.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { NavbarComponent } from './shared/components/navbar/navbar.component';
     JerseysFormComponent,
     PlayersFormComponent,
     CompositionsFormComponent,
+    FormAlertComponent,
   ],
   imports: [
     BrowserModule,

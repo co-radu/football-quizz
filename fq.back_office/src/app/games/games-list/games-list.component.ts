@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Game } from '../shared/models/game/game';
-import { GamesService } from '../shared/services/games/games.service';
+import { Game } from '../../shared/models/game/game';
+import { GamesService } from '../../shared/services/games/games.service';
 
 @Component({
   selector: 'app-games-list',

@@ -1,18 +1,4 @@
-<form [formGroup]="gameForm" *ngIf="dataTypeToCreate === 'games'">
-    <label for="gameGameType">gametype</label>
-    <select name="gameType" id="gameGameType" required>
-        <option *ngFor="let gameType of gameTypesList">{{gameType.label}}</option>
-    </select>
-    <label for="gameClueList">clue list</label>
-    <textarea formControlName="clueList" id="gameClueList" required></textarea>
-    <label for="gamePlayer">player</label>
-    <select formControlName="player" id="gamePlayer"></select>
-    <label for="gameJersey">jersey</label>
-    <select formControlName="jersey" id="gameJersey"></select>
-    <label for="gameComposition">composition</label>
-    <select formControlName="composition" id="gameComposition"></select>
-</form>
-<form [formGroup]="gameTypeForm" *ngIf="dataTypeToCreate === 'gametypes'" (ngSubmit)="onSubmit()">
+<form [formGroup]="gameTypeForm" *ngIf="dataTypeToCreate === 'gametypes'">
     <p>Work</p>
     <label for="gameTypeLabel">label</label>
     <input type="text" formControlName="label" id="gameTypeLabel" required>

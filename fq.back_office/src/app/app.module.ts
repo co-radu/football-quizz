@@ -7,20 +7,20 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import { CompositionsFormComponent } from './compositions/compositions-form/compositions-form.component';
 import { CompositionsListComponent } from './compositions/compositions-list/compositions-list.component';
-import { GamesListComponent } from './games-list/games-list.component';
+import { GamesFormComponent } from './games/games-form/games-form.component';
+import { GamesListComponent } from './games/games-list/games-list.component';
+import { GametypesFormComponent } from './gametypes/gametypes-form/gametypes-form.component';
 import { GametypesListComponent } from './gametypes/gametypes-list/gametypes-list.component';
+import { JerseysFormComponent } from './jerseys/jerseys-form/jerseys-form.component';
 import { JerseysListComponent } from './jerseys/jerseys-list/jerseys-list.component';
 import { LayoutComponent } from './layout/layout.component';
+import { PlayersFormComponent } from './players/players-form/players-form.component';
 import { PlayersListComponent } from './players/players-list/players-list.component';
 import { CreateEditFormComponent } from './shared/components/create-edit-form/create-edit-form.component';
 import { DisplayDataTableComponent } from './shared/components/display-data-table/display-data-table.component';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
-import { GamesFormComponent } from './games/games-form/games-form.component';
-import { GametypesFormComponent } from './gametypes/gametypes-form/gametypes-form.component';
-import { JerseysFormComponent } from './jerseys/jerseys-form/jerseys-form.component';
-import { PlayersFormComponent } from './players/players-form/players-form.component';
-import { CompositionsFormComponent } from './compositions/compositions-form/compositions-form.component';
 
 @NgModule({
   declarations: [

@@ -1,1 +1,29 @@
-<p>games-form works!</p>
+<form [formGroup]="gameForm" (ngSubmit)="onSubmit()">
+    <label for="gameGameType">Gametype</label>
+    <select formControlName="gameType" id="gameGameType" required>
+        <option value="">Select a Game Type</option>
+        <option *ngFor="let gameType of gameTypesList" [ngValue]="gameType">{{gameType.label}}</option>
+    </select>
+    <div formArrayName="clues" required>
+        <label for="gameClues">Clues List</label>
+        <div *ngFor="let clue of clues.controls; index as i">
+            <input [formControlName]="i" placeholder="Clue" required (minlength)="minLengthRequired">
+            <!-- <div *ngIf="clue.invalid && (clue.dirty || clue.touched)" class="alert">
+
+                <div *ngIf="clue.errors?.['required']">
+                    Name is required.
+                </div>
+                <div *ngIf="clue.errors?.['minlength']">
+                    Name must be at least 5 characters long.
+                </div>
+            </div> -->
+        </div>
+    </div>
+    <!--<label for="gamePlayer">Player</label>
+    <select formControlName="player" id="gamePlayer"></select>
+    <label for="gameJersey">Jersey</label>
+    <select formControlName="jersey" id="gameJersey"></select>
+    <label for="gameComposition">Composition</label>
+    <select formControlName="composition" id="gameComposition"></select>
+    <button type="submit" [disabled]="!gameForm.valid">Submit</button> -->
+</form>

@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { GameType } from 'src/app/shared/models/game-type/game-type';
-import { GameTypeService } from 'src/app/shared/services/game-type/game-type.service';
 
 @Component({
   selector: 'app-create-edit-form',

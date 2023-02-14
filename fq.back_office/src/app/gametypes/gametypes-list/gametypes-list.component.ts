@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
 import { GameType } from 'src/app/shared/models/game-type/game-type';
-import { GameTypeService } from 'src/app/shared/services/game-type/game-type.service';
+import { GameTypesService } from 'src/app/shared/services/game-types/game-types.service';
 
 @Component({
   selector: 'app-gametypes-list',
@@ -13,9 +12,9 @@ export class GametypesListComponent {
   public data: GameType[] = [];
 
   constructor(
-    private gameTypeService: GameTypeService,
+    private gameTypesService: GameTypesService,
   ) {
-    this.gameTypeService.getGameTypeList().subscribe((gameTypesList: GameType[]) => {
+    this.gameTypesService.getGameTypesList().subscribe((gameTypesList: GameType[]) => {
       this.data = gameTypesList;
     });
   }

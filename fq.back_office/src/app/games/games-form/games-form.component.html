@@ -1,3 +1,7 @@
+<div class="linkContainer">
+    <a class="link" routerLink="../">
+        < </a>
+</div>
 <div class="container">
     <div class="card">
         <h2>create a game</h2>
@@ -7,7 +11,8 @@
                 <div class="inputContainer">
                     <select formControlName="gameType" id="gameGameType" class="gameType" required>
                         <option ngValue="">Select a game type</option>
-                        <option *ngFor="let gameType of gameTypesList" [ngValue]="gameType">{{gameType.label}}</option>
+                        <option *ngFor="let gameType of gameTypesList" [ngValue]="gameType">{{gameType.label}}
+                        </option>
                     </select>
                     <app-form-alert *ngIf="gameType.invalid && (gameType.dirty || gameType.touched)"
                         [control]="gameType" controlNameToDisplay="Game Type"></app-form-alert>

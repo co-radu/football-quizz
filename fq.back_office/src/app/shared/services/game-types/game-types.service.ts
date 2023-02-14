@@ -6,13 +6,13 @@ import { GameType } from 'src/app/shared/models/game-type/game-type';
 @Injectable({
   providedIn: 'root'
 })
-export class GameTypeService {
+export class GameTypesService {
 
   private apiUrl: string = "http://localhost:8080";
 
   constructor(private httpClient: HttpClient) { }
 
-  getGameTypeList(): Observable<GameType[]> {
+  getGameTypesList(): Observable<GameType[]> {
     return this.httpClient.get<GameType[]>(`${this.apiUrl}/game_types`)
   }
 

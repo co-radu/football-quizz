@@ -8,6 +8,10 @@
     position: relative;
     box-shadow: $box-shadow;
     border-radius: $border-radius;
+    font-weight: bold;
+    position: relative;
+    top: 20px;
+    left: 20px;
 
     .link {
         color: #111111;
@@ -19,8 +23,4 @@
 
 .linkContainer:hover {
     background: $button-blue-hover;
-}
-
-.linkContainer:active {
-    top: 2px;
 }

@@ -1,8 +1,12 @@
 import { Component } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Composition } from 'src/app/shared/models/composition/composition';
 import { GameType } from 'src/app/shared/models/game-type/game-type';
+import { Jersey } from 'src/app/shared/models/jersey/jersey';
 import { Player } from 'src/app/shared/models/player/player';
-import { GameTypeService } from 'src/app/shared/services/game-type/game-type.service';
+import { CompositionsService } from 'src/app/shared/services/compositions/compositions.service';
+import { GameTypesService } from 'src/app/shared/services/game-types/game-types.service';
+import { JerseysService } from 'src/app/shared/services/jerseys/jerseys.service';
 import { PlayersService } from 'src/app/shared/services/players/players.service';
 
 @Component({
@@ -28,10 +32,14 @@ export class GamesFormComponent {
 
   public gameTypesList: GameType[] = [];
   public playersList: Player[] = [];
+  public jerseysList: Jersey[] = [];
+  public compositionsList: Composition[] = [];
 
   constructor(
-    private gameTypeService: GameTypeService,
+    private gameTypesService: GameTypesService,
     private playersService: PlayersService,
+    private jerseysService: JerseysService,
+    private compositionsService: CompositionsService,
   ) {
     this.getGameTypesList();
     this.getPlayersList();
@@ -50,7 +58,7 @@ export class GamesFormComponent {
   }
 
   getGameTypesList(): void {
-    this.gameTypeService.getGameTypeList().subscribe(
+    this.gameTypesService.getGameTypesList().subscribe(
       (gameTypesList: GameType[]) => {
         this.gameTypesList = gameTypesList;
       }
@@ -61,6 +69,22 @@ export class GamesFormComponent {
     this.playersService.getPlayersList().subscribe(
       (playersList: Player[]) => {
         this.playersList = playersList;
+      }
+    );
+  }
+
+  getJerseysList(): void {
+    this.jerseysService.getJerseysList().subscribe(
+      (jerseysList: Jersey[]) => {
+        this.jerseysList = jerseysList;
+      }
+    )
+  }
+
+  getCompositionsList(): void {
+    this.compositionsService.getCompositionsList().subscribe(
+      (compositionsList: Composition[]) => {
+        this.compositionsList = compositionsList;
       }
     );
   }

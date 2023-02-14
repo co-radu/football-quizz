@@ -6,13 +6,13 @@ import { Composition } from 'src/app/shared/models/composition/composition';
 @Injectable({
   providedIn: 'root'
 })
-export class CompositionService {
+export class CompositionsService {
 
   private apiUrl: string = "http://localhost:8080";
 
   constructor(private httpClient: HttpClient) { }
 
-  getCompositionList(): Observable<Composition[]> {
+  getCompositionsList(): Observable<Composition[]> {
     return this.httpClient.get<Composition[]>(`${this.apiUrl}/compositions`)
   }
 }

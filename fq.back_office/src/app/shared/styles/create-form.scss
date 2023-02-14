@@ -1,0 +1,59 @@
+.container {
+    width: 100%;
+    height: 800px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h2 {
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.inputContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .inputs {
+        background-color: #ffffff;
+        padding: 4px 10px;
+        border-radius: $border-radius;
+        font-size: 14px;
+        border: solid 1px $border-color;
+        margin: 10px 0;
+        box-shadow: $box-shadow;
+        width: 520px;
+        height: 26px;
+    }
+}
+
+.formField {
+    margin: 10px 0;
+}
+
+.require {
+    text-align: end;
+    font-style: italic;
+}
+
+.requireToken,
+.require {
+    font-size: 0.80rem;
+}
+
+.submitButton {
+    max-width: 200px;
+    width: -moz-fit-content;
+    width: fit-content;
+    height: 36px;
+    padding: 0 20px;
+    text-transform: uppercase;
+    cursor: pointer;
+    background: white;
+    border: solid 1px $border-color;
+    border-radius: $border-radius;
+    box-shadow: $box-shadow;
+    font-weight: bold;
+}

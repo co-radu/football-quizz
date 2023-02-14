@@ -15,6 +15,10 @@ export class GamesListComponent {
   constructor(
     private gameService: GamesService,
   ) {
+    this.gamesToData();
+  }
+
+  gamesToData(): void {
     this.gameService.getList().subscribe((games: Game[]) => {
       this.data = games;
     });

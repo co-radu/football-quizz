@@ -1,6 +1,7 @@
 <div class="linkContainer">
     <a class="link" routerLink="../">
-        < </a>
+        &#60;
+    </a>
 </div>
 <div class="container">
     <div class="card">
@@ -34,15 +35,41 @@
                 <label for="player">Player ID</label>
                 <div class="inputContainer">
                     <input formControlName="player" placeholder="Player ID or last name" type="text"
-                        (keyup)="getValue()" list="searchList" id="player" class="inputs">
+                        (keyup)="getPlayerIdFromLastName()" list="searchList" id="player" class="inputs">
                     <datalist id="searchList">
-                        <option *ngFor="let value of arrayFoundValues" [value]="value.id">{{value.firstName}}
-                            {{value.lastName}}</option>
+                        <option *ngFor="let value of arrayFoundValues" [value]="value.id">
+                            {{value.firstName}}
+                            {{value.lastName}}
+                        </option>
+                    </datalist>
+                </div>
+            </div>
+            <!-- 
+            <div class="formField">
+                <label for="player">Jersey ID</label>
+                <div class="inputContainer">
+                    <input formControlName="jersey" placeholder="Jersey ID or team name" type="text"
+                        (keyup)="getJerseyIdFromTeamName()" list="searchList" id="jersey" class="inputs">
+                    <datalist id="searchList">
+                        <option *ngFor="let value of arrayFoundValues" [value]="value.id">{{value['team']}}
+                        </option>
                     </datalist>
                 </div>
             </div>
 
-            <p class="require">* require</p>
+            <div class="formField">
+                <label for="player">Composition ID</label>
+                <div class="inputContainer">
+                    <input formControlName="composition" placeholder="Player ID or last name" type="text"
+                        (keyup)="getPlayerIdFromLastName()" list="searchList" id="player" class="inputs">
+                    <datalist id="searchList">
+                        <option *ngFor="let value of arrayFoundValues" [value]="value.id">{{value['lastName']}}
+                            {{value.lastName}}</option>
+                    </datalist>
+                </div>
+            </div> -->
+
+            <p class="require">&#42; require</p>
             <button class="submitButton" type="submit">
                 submit
             </button>

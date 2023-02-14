@@ -6,12 +6,12 @@ import { Player } from "../player/player";
 export class Game {
 
     constructor(
-        id: number,
         gameType: GameType,
         clueList: string[],
-        jersey: Jersey,
-        player: Player,
-        composition: Composition
+        jersey?: Jersey,
+        player?: Player,
+        composition?: Composition,
+        id?: number,
     ) {
         this.id = id;
         this.gameType = gameType;
@@ -21,11 +21,11 @@ export class Game {
         this.composition = composition;
     }
 
-    id: number;
+    id?: number;
     gameType: GameType;
     clueList: string[];
-    jersey: Jersey;
-    player: Player;
-    composition: Composition;
+    jersey?: Jersey;
+    player?: Player;
+    composition?: Composition;
 }
 

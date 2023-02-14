@@ -20,26 +20,22 @@ h2 {
     flex-direction: column;
     align-items: center;
 
-    .clue,
-    .gameType {
+    .inputs {
+        background-color: #ffffff;
         padding: 4px 10px;
         border-radius: $border-radius;
         font-size: 14px;
         border: solid 1px $border-color;
         margin: 10px 0;
         box-shadow: $box-shadow;
-    }
-
-    .gameType {
-        width: 542px;
-        height: 36px;
-        background-color: #ffffff;
-        cursor: pointer;
-    }
-
-    .clue {
         width: 520px;
         height: 26px;
+    }
+
+    #gameType {
+        width: 542px;
+        height: 36px;
+        cursor: pointer;
     }
 }
 

@@ -35,6 +35,8 @@ export class GamesFormComponent {
   public jerseysList: Jersey[] = [];
   public compositionsList: Composition[] = [];
 
+  public arrayFoundValues: Player[] = [];
+
   constructor(
     private gameTypesService: GameTypesService,
     private playersService: PlayersService,
@@ -54,7 +56,10 @@ export class GamesFormComponent {
   }
 
   onSubmit(): void {
-    console.log(this.gameForm.get('gameType'))
+
+    console.log(this.playersList.find(
+      (player: Player) => player.id === +this.gameForm.get('player')?.value
+    ));
   }
 
   getGameTypesList(): void {
@@ -87,5 +92,14 @@ export class GamesFormComponent {
         this.compositionsList = compositionsList;
       }
     );
+  }
+
+  getValue(): void {
+    let inputValue: string = this.gameForm.get('player')?.value.toLowerCase();
+    if (inputValue.length >= 3) {
+      this.arrayFoundValues = this.playersList.filter(
+        (player: Player) => player.lastName.toLowerCase().includes(inputValue)
+      );
+    }
   }
 }

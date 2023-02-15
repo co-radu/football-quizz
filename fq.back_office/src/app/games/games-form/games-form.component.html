@@ -3,48 +3,57 @@
         &#60;
     </a>
 </div>
-<div class="container">
-    <div class="card">
-        <h2>create a game</h2>
-        <form [formGroup]="gameForm" (ngSubmit)="onSubmit()" class="gameForm">
-            <div class="formField">
-                <label for="gameType" id="gameType">Gametype <span class="requireToken">*</span></label>
-                <div class="inputContainer">
-                    <select formControlName="gameType" id="gameType" class="inputs" required>
-                        <option ngValue="">Select a game type</option>
-                        <option *ngFor="let gameType of gameTypesList" [ngValue]="gameType">{{gameType.label}}
-                        </option>
-                    </select>
-                    <app-form-alert *ngIf="gameType.invalid && (gameType.dirty || gameType.touched)"
-                        [control]="gameType" controlNameToDisplay="Game Type"></app-form-alert>
-                </div>
-
+<div class="card">
+    <h2>create a game</h2>
+    <form [formGroup]="gameForm" (ngSubmit)="onSubmit()" class="gameForm">
+        <div class="formField">
+            <label for="gameType" id="gameType">Gametype <span class="requireToken">*</span></label>
+            <div class="inputContainer">
+                <select formControlName="gameType" id="gameType" class="inputs" required>
+                    <option ngValue="">Select a game type</option>
+                    <option *ngFor="let gameType of gameTypesList" [ngValue]="gameType">{{gameType.label}}
+                    </option>
+                </select>
+                <app-form-alert *ngIf="gameType.invalid && (gameType.dirty || gameType.touched)" [control]="gameType"
+                    controlNameToDisplay="Game Type"></app-form-alert>
             </div>
 
-            <div formArrayName="clues" class="formField">
-                <label for="clues">Clues List <span class="requireToken">*</span></label>
-                <div *ngFor="let clue of clues.controls; index as i" class="inputContainer">
-                    <input [formControlName]="i" placeholder="Clue" required (minlength)="minLengthRequired"
-                        class="inputs" id="clue">
-                    <app-form-alert *ngIf="clue.invalid && (clue.dirty || clue.touched)" [control]="clue"
-                        controlNameToDisplay="Clue" [minLengthRequired]="minLengthRequired"></app-form-alert>
-                </div>
-            </div>
+        </div>
 
-            <div class="formField">
-                <label for="player">Player ID</label>
-                <div class="inputContainer">
-                    <input formControlName="player" placeholder="Player ID or last name" type="text"
-                        (keyup)="getPlayerIdFromLastName()" list="searchList" id="player" class="inputs">
-                    <datalist id="searchList">
-                        <option *ngFor="let value of arrayFoundValues" [value]="value.id">
-                            {{value.firstName}}
-                            {{value.lastName}}
-                        </option>
-                    </datalist>
-                </div>
+        <div formArrayName="clues" class="formField">
+            <label for="clues">Clues List <span class="requireToken">*</span></label>
+            <div *ngFor="let clue of clues.controls; index as i" class="inputContainer">
+                <input [formControlName]="i" placeholder="Clue" required (minlength)="minLengthRequired" class="inputs"
+                    id="clue">
+                <app-form-alert *ngIf="clue.invalid && (clue.dirty || clue.touched)" [control]="clue"
+                    controlNameToDisplay="Clue" [minLengthRequired]="minLengthRequired"></app-form-alert>
             </div>
-            <!-- 
+        </div>
+
+        <div class="formField">
+            <label for="player">Player ID</label>
+            <div class="inputContainer">
+                <input formControlName="player" placeholder="Player ID or last name" type="text"
+                    (keyup)="getPlayerIdFromLastName()" list="searchList" id="player" class="inputs">
+                <datalist id="searchList">
+                    <option *ngFor="let value of arrayFoundValues" [value]="value.id">
+                        {{value.firstName}}
+                        {{value.lastName}}
+                    </option>
+                </datalist>
+            </div>
+        </div>
+        <p class="require">&#42; require</p>
+        <button class="submitButton" type="submit">
+            submit
+        </button>
+    </form>
+</div>
+
+
+<!--      WORK IN PROGRESS! 
+
+
             <div class="formField">
                 <label for="player">Jersey ID</label>
                 <div class="inputContainer">
@@ -68,11 +77,3 @@
                     </datalist>
                 </div>
             </div> -->
-
-            <p class="require">&#42; require</p>
-            <button class="submitButton" type="submit">
-                submit
-            </button>
-        </form>
-    </div>
-</div>

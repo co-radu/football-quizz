@@ -1,6 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { Composition } from 'src/app/shared/models/composition/composition';
 import { GameType } from 'src/app/shared/models/game-type/game-type';
 import { Game } from 'src/app/shared/models/game/game';
@@ -18,6 +17,8 @@ import { PlayersService } from 'src/app/shared/services/players/players.service'
   styleUrls: ['./games-form.component.scss']
 })
 export class GamesFormComponent {
+
+  @Output() newGameEvent: EventEmitter<Game> = new EventEmitter<Game>();
 
   public minLengthRequired: number = 5;
   public gameForm: FormGroup = new FormGroup({
@@ -46,10 +47,12 @@ export class GamesFormComponent {
     private jerseysService: JerseysService,
     private compositionsService: CompositionsService,
     private gamesService: GamesService,
-    private router: Router
+
   ) {
-    this.getGameTypesList();
-    this.getPlayersList();
+    this.playersService.getPlayersList().subscribe((playersList: Player[]) => { this.playersList = playersList });
+    this.gameTypesService.getGameTypesList().subscribe((gameTypesList: GameType[]) => { this.gameTypesList = gameTypesList });
+    this.jerseysService.getJerseysList().subscribe((jerseysList: Jersey[]) => { this.jerseysList = jerseysList });
+    this.compositionsService.getCompositionsList().subscribe((compositionsList: Composition[]) => { this.compositionsList = compositionsList });
   }
 
   get clues(): FormArray {
@@ -58,38 +61,6 @@ export class GamesFormComponent {
 
   get gameType(): FormControl {
     return this.gameForm.get('gameType') as FormControl;
-  }
-
-  getGameTypesList(): void {
-    this.gameTypesService.getGameTypesList().subscribe(
-      (gameTypesList: GameType[]) => {
-        this.gameTypesList = gameTypesList;
-      }
-    );
-  }
-
-  getPlayersList(): void {
-    this.playersService.getPlayersList().subscribe(
-      (playersList: Player[]) => {
-        this.playersList = playersList;
-      }
-    );
-  }
-
-  getJerseysList(): void {
-    this.jerseysService.getJerseysList().subscribe(
-      (jerseysList: Jersey[]) => {
-        this.jerseysList = jerseysList;
-      }
-    )
-  }
-
-  getCompositionsList(): void {
-    this.compositionsService.getCompositionsList().subscribe(
-      (compositionsList: Composition[]) => {
-        this.compositionsList = compositionsList;
-      }
-    );
   }
 
   getPlayerIdFromLastName(): void {
@@ -101,7 +72,26 @@ export class GamesFormComponent {
     }
   }
 
-  /*   getJerseyIdFromTeamName(): void {
+  onSubmit(): void {
+    const playerInGame: Player = <Player>this.playersList.find((player: Player) => player.id === +this.gameForm.get('player')?.value);
+    const newGame: Game = new Game(
+      this.gameForm.get('gameType')?.value,
+      this.gameForm.get('clues')?.value,
+      undefined,
+      playerInGame,
+    );
+    this.gamesService.createGame(newGame).subscribe(
+      (gameSaved: Game) => {
+        this.newGameEvent.emit(gameSaved);
+        this.gameForm.reset();
+      }
+    );
+  }
+
+  /*   WORK IN PROGRESS!
+  
+  
+  getJerseyIdFromTeamName(): void {
       let inputValue: string = this.gameForm.get('jersey')?.value.toLowerCase();
       if (inputValue.length >= 3) {
         this.arrayFoundValues = this.jerseysList.filter(
@@ -118,15 +108,4 @@ export class GamesFormComponent {
         );
       }
     } */
-
-  onSubmit(): void {
-    const player: Player = <Player>this.playersList.find((player: Player) => player.id === +this.gameForm.get('player')?.value);
-    const newGame: Game = new Game(
-      this.gameForm.get('gameType')?.value,
-      this.gameForm.get('clues')?.value,
-      undefined,
-      player
-    );
-    this.gamesService.createGame(newGame).subscribe(() => { this.gameForm.reset() });
-  }
 }

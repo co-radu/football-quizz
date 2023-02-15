@@ -22,6 +22,7 @@ import { CreateEditFormComponent } from './shared/components/create-edit-form/cr
 import { DisplayDataTableComponent } from './shared/components/display-data-table/display-data-table.component';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { FormAlertComponent } from './shared/components/form-alert/form-alert.component';
+import { TopbarComponent } from './shared/components/topbar/topbar.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { FormAlertComponent } from './shared/components/form-alert/form-alert.co
     PlayersFormComponent,
     CompositionsFormComponent,
     FormAlertComponent,
+    TopbarComponent,
   ],
   imports: [
     BrowserModule,

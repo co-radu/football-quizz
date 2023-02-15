@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ComponentRef } from '@angular/core';
 import { Game } from '../../shared/models/game/game';
 import { GamesService } from '../../shared/services/games/games.service';
+import { GamesFormComponent } from '../games-form/games-form.component';
 
 @Component({
   selector: 'app-games-list',
@@ -10,17 +11,21 @@ import { GamesService } from '../../shared/services/games/games.service';
 
 export class GamesListComponent {
 
-  public data: Game[] = [];
+  public gamesToData: Game[] = [];
 
   constructor(
     private gameService: GamesService,
   ) {
-    this.gamesToData();
+    this.gameService.getList().subscribe((games: Game[]) => {
+      this.gamesToData = games;
+    });
   }
 
-  gamesToData(): void {
-    this.gameService.getList().subscribe((games: Game[]) => {
-      this.data = games;
-    });
+  pushGame(gamesFormComponent: GamesFormComponent): void {
+    gamesFormComponent.newGameEvent.subscribe(
+      (newGame: Game) => {
+        this.gamesToData.push(newGame);
+      }
+    );
   }
 }

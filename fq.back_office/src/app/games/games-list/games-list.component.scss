@@ -1,4 +1,11 @@
 @import "../../shared/styles/links.scss";
+@import "../../shared/styles/variables.scss";
+
+.page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
 .hide {
     display: none;

@@ -5,22 +5,26 @@
     width: fit-content;
     display: flex;
     background: $button-blue;
-    position: relative;
     box-shadow: $box-shadow;
     border-radius: $border-radius;
     font-weight: bold;
-    position: relative;
-    top: 20px;
-    left: 20px;
+    margin: 20px 0 30px;
+    align-self: end;
+}
 
-    .link {
-        color: #111111;
-        padding: 10px 15px;
-        cursor: pointer;
-        text-transform: uppercase;
-    }
+.link {
+    color: #111111;
+    padding: 10px 15px;
+    cursor: pointer;
+    text-transform: uppercase;
 }
 
 .linkContainer:hover {
     background: $button-blue-hover;
+}
+
+@media screen and (max-width: $max-width-media) {
+    .linkContainer {
+        margin: 10px 10px 20px;
+    }
 }

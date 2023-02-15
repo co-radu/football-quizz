@@ -1,17 +1,10 @@
-<div class="topBar" id="top">
-    <div class="burgerButton" (click)="openedNavBar()" id="menu">
-        <div class="bar1"></div>
-        <div class="bar2"></div>
-        <div class="bar3"></div>
-    </div>
-</div>
 <nav class="navBar" id="nav">
     <div class="headers">
         <h3>
-            <a href="http://localhost:4200" target="_blank" class="appName">football quizz</a>
+            <a href="http://localhost:4200" target="_blank" class="appName">{{appName}}</a>
         </h3>
         <p class="appVersion">
-            v0.1
+            {{appVersion}}
         </p>
     </div>
     <hr class="divider">
@@ -21,7 +14,3 @@
         </li>
     </ul>
 </nav>
-<div class="pagesBody" id="pages">
-    <router-outlet></router-outlet>
-</div>
-<div class="shade" id="shade"></div>

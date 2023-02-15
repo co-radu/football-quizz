@@ -1,9 +1,13 @@
+$max-width-media: 768px;
+
 $navbar-width: 180px;
 $navbar-padding-left: 8px;
 $navbar-transition: 0.25s;
 
-$dark-blue: rgba(0, 0, 255, 1);
-$light-blue: rgba(66, 143, 245, 0.2);
+$topbar-height: 56px;
+
+$dark-blue: #0000FF;
+$light-blue: #D9E9FD;
 
 $button-blue: rgba(66, 143, 245, 0.4);
 $button-blue-hover: rgba(66, 143, 245, 0.6);

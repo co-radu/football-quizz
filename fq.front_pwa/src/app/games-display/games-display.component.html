@@ -1,0 +1,55 @@
+<router-outlet></router-outlet>
+
+<div class="gamesDisplay">
+
+    <div *ngIf="this.currentGameTypeId === 3; else elseBlock" class="gamesDisplay__guessComposition">
+        <p class="gamesDisplay__guessComposition__details">
+            {{currentGame.composition.teamList[0]}} -
+            {{currentGame.composition.teamList[1]}}<br><br>
+            {{currentGame.composition.label}}
+        </p>
+        <app-guess-composition #guessComposition></app-guess-composition>
+        <p class="gamesDisplay__timer">
+            {{timeLeft}}
+        </p>
+        <div class="gamesDisplay__guessComposition__buttonsList">
+            <button mat-raised-button color="warn" class="smallButtons" id="escapeButton" (click)="redirectToHome()">
+                Abandon
+            </button>
+            <button mat-raised-button color="primary" class="smallButtons" id="validButton" (click)="onSubmit()">
+                validé
+            </button>
+        </div>
+    </div>
+
+    <ng-template #elseBlock>
+        <img *ngIf="this.currentGameTypeId === 2" src="/assets/placeholder-pictures/jersey.png"
+            class="gamesDisplay__placeholder-picture" alt="Football player jersey shadow">
+        <img *ngIf="this.currentGameTypeId === 1" src="/assets/placeholder-pictures/player.png"
+            class="gamesDisplay__placeholder-picture" alt="Football player shadow">
+        <ul class="gamesDisplay__clueList">
+            <div *ngFor="let clue of currentGame.clueList" class="gamesDisplay__clueList__clue">
+                <p>{{clue}}</p>
+            </div>
+        </ul>
+        <p class="gamesDisplay__timer">
+            {{timeLeft}}
+        </p>
+        <div *ngIf="buttonIsVisible" class="gamesDisplay__guessComposition__buttonsList">
+            <button mat-raised-button color="warn" class="smallButtons" id="escapeButton" (click)="redirectToHome()">
+                Abandon
+            </button>
+            <button mat-raised-button color="primary" class="smallButtons" id="foundButton" (click)="inputIsVisible()">
+                trouvé
+            </button>
+        </div>
+        <div *ngIf="!buttonIsVisible" class="gamesDisplay__formIsVisible">
+            <app-guess-jersey *ngIf="this.currentGameTypeId === 2" #guessJersey></app-guess-jersey>
+            <app-guess-player *ngIf="this.currentGameTypeId === 1" #guessPlayer></app-guess-player>
+            <button mat-raised-button color="primary" class="buttons" (click)="onSubmit()">
+                validé
+            </button>
+        </div>
+    </ng-template>
+
+</div>

@@ -1,0 +1,39 @@
+<form [formGroup]="gameTypeForm" *ngIf="dataTypeToCreate === 'gametypes'">
+    <p>Work</p>
+    <label for="gameTypeLabel">label</label>
+    <input type="text" formControlName="label" id="gameTypeLabel" required>
+    <label for="gameTypeTimer">timer</label>
+    <input type="number" formControlName="timer" required>
+    <button type="submit">submit</button>
+</form>
+<form [formGroup]="playerForm" *ngIf="dataTypeToCreate === 'players'">
+    <label for="playerFirstName">first name</label>
+    <input type="text" formControlName="firstName" id="playerFirstName">
+    <label for="playerLastName">last name</label>
+    <input type="text" formControlName="lastName" id="playerLastName" required>
+    <label for="playerAcceptableAnswers">acceptables answers</label>
+    <textarea formControlName="acceptableAnswers" id="playerAcceptableAnswers" required></textarea>
+    <label for="playerPictureUrl">picture url</label>
+    <input type="text" formControlName="pictureUrl" id="playerPictureUrl">
+</form>
+<form [formGroup]="jerseyForm" *ngIf="dataTypeToCreate === 'jerseys'">
+    <label for="jerseyTeam">team</label>
+    <input type="text" formControlName="team" id="jerseyTeam" required>
+    <label for="jerseySeason">season</label>
+    <input type="number" formControlName="season" id="jerseySeason" required>
+    <label for="jerseyPictureUrl">picture url</label>
+    <input type="text" formControlName="pictureUrl" id="jerseyPictureUrl">
+</form>
+
+<!-- Composition in work -->
+
+<!-- <form [formGroup]="compositionForm" *ngIf="dataTypeToCreate === 'compositions'">
+    <label for="compositionLabel">label</label>
+    <input type="text" formControlName="label" id="compositionLabel" required>
+    <label for="compositionTeam">team</label>
+    <input type="text" formControlName="team" id="compositionTeam">    
+    <label for="compositionPictureUrl">picture url</label>
+    <input type="text" formControlName="pictureUrl" id="compositionPictureUrl">    
+    <select formControlName="player"></select>
+    <select formControlName="composition"></select>
+</form> -->

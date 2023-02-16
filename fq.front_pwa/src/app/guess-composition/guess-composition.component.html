@@ -1,0 +1,70 @@
+<form class="guessComposition" [formGroup]="compositionForm">
+    <div class="guessComposition__soccerField">
+
+        <!-- FORWARDS -->
+        <div class="guessComposition__soccerField__playersContainer">
+            <div class="guessComposition__soccerField__forward"
+                *ngFor="let forward of forwards.controls; let i =index">
+                <button class="guessComposition__soccerField__button" id="button_forward_{{i}}"
+                    (click)="openedInput('forward', i)">
+                </button>
+                <mat-form-field class="guessComposition__soccerField__matForm" id="forward_{{i}}">
+                    <input matInput type="text" class="guessComposition__soccerField__matForm__input"
+                        [formControl]="getForwards(i)" id="input_forward_{{i}}" required minlength="3">
+                    <button matSuffix mat-icon-button (click)="closedAllInputs()">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <!-- MIDFIELDERS -->
+        <div class="guessComposition__soccerField__playersContainer">
+            <div class="guessComposition__soccerField__midfielder"
+                *ngFor="let midfielder of midfielders.controls; let i =index">
+                <button class="guessComposition__soccerField__button" id="button_midfielder_{{i}}"
+                    (click)="openedInput('midfielder', i)">
+                </button>
+                <mat-form-field class="guessComposition__soccerField__matForm" id="midfielder_{{i}}">
+                    <input matInput type="text" class="guessComposition__soccerField__matForm__input"
+                        [formControl]="getMidfielders(i)" id="input_midfielder_{{i}}" required minlength="3">
+                    <button matSuffix mat-icon-button (click)="closedAllInputs()">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <!-- DEFENDERS -->
+        <div class="guessComposition__soccerField__playersContainer">
+            <div class="guessComposition__soccerField__defender"
+                *ngFor="let defender of defenders.controls; let i =index">
+                <button class="guessComposition__soccerField__button" id="button_defender_{{i}}"
+                    (click)="openedInput('defender', i)">
+                </button>
+                <mat-form-field class="guessComposition__soccerField__matForm" id="defender_{{i}}">
+                    <input matInput type="text" class="guessComposition__soccerField__matForm__input"
+                        [formControl]="getDefenders(i)" id="input_defender_{{i}}" required minlength="3">
+                    <button matSuffix mat-icon-button (click)="closedAllInputs()">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                </mat-form-field>
+            </div>
+        </div>
+
+        <!-- GOALKEEPER -->
+        <div class="guessComposition__soccerField__playersContainer">
+            <button class="guessComposition__soccerField__button" id="button_goalkeeper_0"
+                (click)="openedInput('goalkeeper', 0)">
+            </button>
+            <mat-form-field class="guessComposition__soccerField__matForm" id="goalkeeper_0">
+                <input matInput type="text" class="guessComposition__soccerField__matForm__input"
+                    formControlName="goalkeeper" id="input_goalkeeper_0" required minlength="3">
+                <button matSuffix mat-icon-button (click)="closedAllInputs()">
+                    <mat-icon>close</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+
+    </div>
+</form>

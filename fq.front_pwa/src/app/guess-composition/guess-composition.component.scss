@@ -1,0 +1,27 @@
+.guessComposition__soccerField {
+    height: 70vh;
+    width: 92vw;
+    background-color: #348c31;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.guessComposition__soccerField__playersContainer {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.guessComposition__soccerField__button {
+    height: 40px;
+    width: 40px;
+    background-color: black;
+    border-radius: 100%;
+    color: white;
+}
+
+.guessComposition__soccerField__matForm {
+    display: none;
+    position: absolute;
+    left: 5vw;
+}

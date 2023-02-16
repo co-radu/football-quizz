@@ -1,0 +1,65 @@
+@import "../../styles/variables.scss";
+@import "../../styles/icons.scss";
+@import "../../styles/buttons.scss";
+
+.topBar {
+    background-color: $secondary;
+    position: absolute;
+    top: 0;
+    left: $navbar-width;
+    width: calc(100% - $navbar-width);
+    height: $topbar-height;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.buttonsLeftContainer {
+    display: flex;
+}
+
+#menu {
+    display: none;
+}
+
+@media screen and (max-width: $max-width-media) {
+    .topBar {
+        left: 0;
+        width: 100%;
+    }
+
+    #menu {
+        display: block;
+    }
+
+    .burgerIcon,
+    .closeIcon {
+        height: 24px;
+        width: 24px;
+    }
+
+    .bar1,
+    .bar2,
+    .bar3 {
+        height: 3px;
+        background-color: #ffffff;
+        margin: 4px 0;
+        transition: $navbar-transition;
+
+    }
+
+    .closeIcon {
+
+        .bar1 {
+            transform: translate(0, 7px) rotate(-45deg);
+        }
+
+        .bar2 {
+            opacity: 0;
+        }
+
+        .bar3 {
+            transform: translate(0, -7px) rotate(45deg);
+        }
+    }
+}

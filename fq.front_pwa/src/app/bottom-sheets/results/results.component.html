@@ -1,0 +1,42 @@
+<div *ngIf="gameIndex != numberGamesInParty">
+    <div *ngIf="templateToDisplay === 'try_again'">
+        <h2>
+            Faux
+        </h2>
+        <p class="gameRestart">
+            Le jeu va reprendre dans <strong>{{timeToRetry}}</strong> secondes.
+        </p>
+    </div>
+    <h2 *ngIf="responseIsValid">
+        Félicitations
+    </h2>
+    <h2 *ngIf="templateToDisplay === 'unsuccess'">
+        Temps écoulé
+    </h2>
+    <div *ngIf="templateToDisplay != 'try_again'">
+        <p>
+            Question: {{gameIndex}} / {{numberGamesInParty}} <br>
+            score: {{successCounter}}<br>
+        </p>
+        <div class="buttonsList">
+            <button mat-raised-button color="warn" class="smallButtons" (click)="redirectToHome()">
+                Abandon
+            </button>
+            <button mat-raised-button color="primary" class="smallButtons" (click)="bottomSheetDismiss()">
+                Suivant
+            </button>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="gameIndex === numberGamesInParty">
+    <h2>
+        Partie terminée
+    </h2>
+    <p>
+        score: {{successCounter}} / {{numberGamesInParty}}
+    </p>
+    <button mat-raised-button color="primary" (click)="redirectToHome()">
+        Menu Principal
+    </button>
+</div>

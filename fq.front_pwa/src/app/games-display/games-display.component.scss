@@ -1,0 +1,44 @@
+.gamesDisplay,
+.gamesDisplay__guessComposition {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+}
+
+.gamesDisplay__guessComposition__details {
+    width: 90%;
+    font-style: italic;
+    font-size: 1.5rem;
+}
+
+.gamesDisplay__guessComposition__buttonsList {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.gamesDisplay__placeholder-picture {
+    height: 300px;
+}
+
+.gamesDisplay__clueList {
+    padding: 0;
+    text-align: center;
+    font-style: italic;
+    font-size: 0.9rem;
+}
+
+.gamesDisplay__timer {
+    font-size: xx-large;
+    font-weight: bold;
+    text-align: center;
+}
+
+.gamesDisplay__formIsVisible {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

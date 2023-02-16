@@ -1,0 +1,19 @@
+@import "./variables.scss";
+
+.buttons {
+    color: #ffffff;
+    cursor: pointer;
+    height: fit-content;
+    padding: 15px;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.buttons:hover {
+    color: $active;
+}
+
+@media screen and (max-width: $max-width-media) {
+    .buttons:hover {
+        color: #ffffff;
+    }
+}

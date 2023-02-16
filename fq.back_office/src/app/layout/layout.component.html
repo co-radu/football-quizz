@@ -1,0 +1,8 @@
+<div id="layout">
+    <div id="pages">
+        <router-outlet></router-outlet>
+    </div>
+    <div id="shade"></div>
+    <app-navbar></app-navbar>
+    <app-topbar (openedNav)="openedNavBar()" [navBarIsOpened]="navBarIsOpened"></app-topbar>
+</div>

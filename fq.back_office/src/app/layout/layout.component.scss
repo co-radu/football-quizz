@@ -8,8 +8,9 @@
 
 #pages {
     width: calc(100% - $navbar-width);
-    left: 180px;
+    left: $navbar-width;
     position: absolute;
+    height: 100%;
 }
 
 @media screen and (max-width: $max-width-media) {
@@ -17,13 +18,13 @@
         width: 100%;
         height: calc(100% + $topbar-height);
         display: none;
-        background-color: rgba(0, 0, 0, 0.5);
+        background-color: rgba(0, 0, 0, 0.4);
         position: absolute;
     }
 
     #pages {
         width: 100%;
         left: 0;
-        top: 56px;
+        top: $topbar-height;
     }
 }

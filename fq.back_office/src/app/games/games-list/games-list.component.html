@@ -1,10 +1,13 @@
 <div class="page">
+    <h2 class="pageTitle">
+        Games
+    </h2>
     <div class="container">
-        <div class="linkContainer" routerLinkActive="hide">
-            <a class="link" [routerLink]="['./create']">create</a>
-        </div>
         <router-outlet (activate)="pushGame($event)"></router-outlet>
         <app-display-data-table *ngIf="gamesToData && gamesToData.length > 0"
             [data]="gamesToData"></app-display-data-table>
     </div>
+    <!-- <div class="linkContainer" routerLinkActive="hide">
+        <a class="link" [routerLink]="['./create']">create</a>
+    </div> -->
 </div>

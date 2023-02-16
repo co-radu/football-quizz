@@ -1,4 +1,4 @@
-import { Component, ComponentRef } from '@angular/core';
+import { Component } from '@angular/core';
 import { Game } from '../../shared/models/game/game';
 import { GamesService } from '../../shared/services/games/games.service';
 import { GamesFormComponent } from '../games-form/games-form.component';

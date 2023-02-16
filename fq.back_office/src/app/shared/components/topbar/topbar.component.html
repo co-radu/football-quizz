@@ -1,7 +1,21 @@
 <div class="topBar" id="top">
-    <div class="burgerButton" (click)="openedNavBar()" id="menu">
-        <div class="bar1"></div>
-        <div class="bar2"></div>
-        <div class="bar3"></div>
+    <div class="buttonsLeftContainer">
+        <div (click)="openedNavBar()" class="buttons" id="menu">
+            <div class="burgerIcon" id="burger">
+                <div class="bar1"></div>
+                <div class="bar2"></div>
+                <div class="bar3"></div>
+            </div>
+        </div>
+        <div class="buttons">
+            <span class="material-symbols-outlined">
+                arrow_back_ios_new
+            </span>
+        </div>
+    </div>
+    <div class="buttons">
+        <span class="material-symbols-outlined">
+            power_rounded
+        </span>
     </div>
 </div>

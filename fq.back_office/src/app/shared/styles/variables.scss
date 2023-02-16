@@ -1,17 +1,21 @@
+/* Color */
+$primary: #52414C;
+$secondary: #596157;
+$active: #DBDCA4;
+
+/* Media Queries */
 $max-width-media: 768px;
 
-$navbar-width: 180px;
+/* Navbar */
+$navbar-width: 280px;
 $navbar-padding-left: 8px;
 $navbar-transition: 0.25s;
 
+/* Topbar */
 $topbar-height: 56px;
 
-$dark-blue: #0000FF;
-$light-blue: #D9E9FD;
-
-$button-blue: rgba(66, 143, 245, 0.4);
-$button-blue-hover: rgba(66, 143, 245, 0.6);
-
+/* Border */
 $border-color: #E0E1E4;
 $border-radius: 4px;
+
 $box-shadow: rgb(60 66 87 / 12%) 0px 7px 14px 0px, rgb(0 0 0 / 12%) 0px 3px 6px 0px;

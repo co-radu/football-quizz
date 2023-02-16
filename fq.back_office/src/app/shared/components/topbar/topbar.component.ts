@@ -11,12 +11,12 @@ export class TopbarComponent {
   @Input() navBarIsOpened: boolean = false;
 
   openedNavBar(): void {
-    const burgerButton: HTMLDivElement = <HTMLDivElement>document.getElementById('menu');
+    const burgerButton: HTMLDivElement = <HTMLDivElement>document.getElementById('burger');
     this.openedNav.emit();
     if (this.navBarIsOpened) {
-      burgerButton.className = 'closeButton';
+      burgerButton.className = 'closeIcon';
     } else {
-      burgerButton.className = 'burgerButton';
+      burgerButton.className = 'burgerIcon';
     }
   }
 }

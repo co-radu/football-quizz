@@ -9,5 +9,5 @@ export class NavbarComponent {
 
   public links: string[] = ['games', 'gametypes', 'players', 'jerseys', 'compositions'];
   public appName: string = 'Football Quizz';
-  public appVersion: string = 'v0.1';
+  public appVersion: number = 0.1;
 }

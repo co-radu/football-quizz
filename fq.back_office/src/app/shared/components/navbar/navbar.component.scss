@@ -87,4 +87,10 @@ ul {
             }
         }
     }
+
+    .routerIsActive {
+        #nav {
+            left: $navbar-width;
+        }
+    }
 }

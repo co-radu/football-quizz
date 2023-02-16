@@ -10,7 +10,7 @@
     <hr class="divider">
     <ul>
         <li *ngFor="let link of links" class="list" routerLinkActive="active">
-            <a class="link" routerLinkActive="active__link" [routerLink]="link">{{link}}</a>
+            <a class="link" routerLinkActive="active__link" [routerLink]="link" (click)="closedNav.emit()">{{link}}</a>
         </li>
     </ul>
 </nav>

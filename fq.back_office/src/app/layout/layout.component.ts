@@ -16,23 +16,26 @@ export class LayoutComponent {
     } else if (window.innerWidth <= 768) {
       this.navBarIsOpened = false;
     }
-    this.openedNavBar();
+    this.moveNavBar();
   }
 
-  openedNavBar(): void {
+  moveNavBar(): void {
     const navBar: HTMLElement = <HTMLElement>document.getElementById('nav');
     const shade: HTMLDivElement = <HTMLDivElement>document.getElementById('shade');
     const layout: HTMLDivElement = <HTMLDivElement>document.getElementById('layout');
+    const burgerButton: HTMLDivElement = <HTMLDivElement>document.getElementById('burger');
     if (this.navBarIsOpened) {
       if (window.innerWidth <= 768) {
         layout.style.overflow = 'hidden';
       } else {
         layout.style.overflow = 'auto';
       }
+      burgerButton.className = 'closeIcon';
       navBar.style.left = '0';
       shade.style.display = 'block';
       this.navBarIsOpened = false;
     } else {
+      burgerButton.className = 'burgerIcon';
       navBar.style.left = `-${this.navBarWidth}`;
       shade.style.display = 'none';
       layout.style.overflow = 'auto';

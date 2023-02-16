@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { NavigationService } from '../../services/navigation/navigation.service';
 
 @Component({
   selector: 'app-topbar',
@@ -6,17 +7,16 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
   styleUrls: ['./topbar.component.scss']
 })
 export class TopbarComponent {
-  @Output() openedNav: EventEmitter<any> = new EventEmitter();
+  @Output() moveNavBar: EventEmitter<any> = new EventEmitter();
 
   @Input() navBarIsOpened: boolean = false;
 
-  openedNavBar(): void {
-    const burgerButton: HTMLDivElement = <HTMLDivElement>document.getElementById('burger');
-    this.openedNav.emit();
-    if (this.navBarIsOpened) {
-      burgerButton.className = 'closeIcon';
-    } else {
-      burgerButton.className = 'burgerIcon';
+  constructor(private navigation: NavigationService) { }
+
+  goBack(): void {
+    if (!this.navBarIsOpened) {
+      this.moveNavBar.emit();
     }
+    this.navigation.goBack();
   }
 }

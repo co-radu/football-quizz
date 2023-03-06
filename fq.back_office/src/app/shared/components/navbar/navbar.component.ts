@@ -12,4 +12,10 @@ export class NavbarComponent {
   public links: string[] = ['games', 'gametypes', 'players', 'jerseys', 'compositions'];
   public appName: string = 'Football Quizz';
   public appVersion: number = 0.1;
+
+  closeNav(): void {
+    if (window.innerWidth <= 768) {
+      this.closedNav.emit();
+    }
+  }
 }

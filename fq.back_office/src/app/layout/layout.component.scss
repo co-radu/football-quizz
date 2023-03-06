@@ -9,8 +9,9 @@
 #pages {
     width: calc(100% - $navbar-width);
     left: $navbar-width;
+    top: $topbar-height;
     position: absolute;
-    height: 100%;
+    height: calc(100% - $topbar-height);
 }
 
 @media screen and (max-width: $max-width-media) {

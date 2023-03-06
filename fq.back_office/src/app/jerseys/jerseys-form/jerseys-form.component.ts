@@ -6,5 +6,4 @@ import { Component } from '@angular/core';
   styleUrls: ['./jerseys-form.component.scss']
 })
 export class JerseysFormComponent {
-
 }

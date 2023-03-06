@@ -9,21 +9,4 @@ import { PlayersService } from 'src/app/shared/services/players/players.service'
   templateUrl: './players-list.component.html',
   styleUrls: ['./players-list.component.scss']
 })
-export class PlayersListComponent {
-
-  public playerList: Player[] = [];
-  public displayedColumns: string[] = ['id', 'lastName', 'firstName'];
-  public createFormIsVisible: boolean = false;
-  public editFormIsVisible: boolean = false;
-  public playerForm: FormGroup = new FormGroup({
-    lastName: new FormControl(),
-    firstName: new FormControl(),
-    acceptableAnswers: new FormControl(),
-    pictureUrl: new FormControl()
-  });
-
-  constructor(private playersService: PlayersService) {
-    this.playersService.getPlayersList().subscribe(((playerList: Player[]) => this.playerList = playerList));
-  }
-
-}
+export class PlayersListComponent { }

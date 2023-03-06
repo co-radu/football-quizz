@@ -4,8 +4,8 @@
     </h2>
     <div class="container">
         <router-outlet (activate)="pushGame($event)"></router-outlet>
-        <app-display-data-table *ngIf="gamesToData && gamesToData.length > 0"
-            [data]="gamesToData"></app-display-data-table>
+        <app-display-data-table *ngIf="gamesToDisplay && gamesToDisplay.length > 0"
+            [data]="gamesToDisplay"></app-display-data-table>
     </div>
     <!-- <div class="linkContainer" routerLinkActive="hide">
         <a class="link" [routerLink]="['./create']">create</a>

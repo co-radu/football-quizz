@@ -23,6 +23,7 @@ import { DisplayDataTableComponent } from './shared/components/display-data-tabl
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { FormAlertComponent } from './shared/components/form-alert/form-alert.component';
 import { TopbarComponent } from './shared/components/topbar/topbar.component';
+import { GamesDisplayPipe } from './shared/pipes/games-display/games-display.pipe';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { TopbarComponent } from './shared/components/topbar/topbar.component';
     CompositionsFormComponent,
     FormAlertComponent,
     TopbarComponent,
+    GamesDisplayPipe,
   ],
   imports: [
     BrowserModule,
